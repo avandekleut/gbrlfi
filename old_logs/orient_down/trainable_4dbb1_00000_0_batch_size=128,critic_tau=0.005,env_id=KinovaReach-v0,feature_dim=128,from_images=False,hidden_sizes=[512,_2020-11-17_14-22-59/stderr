@@ -1,0 +1,62 @@
+/home/avandekl/miniconda3/lib/python3.8/site-packages/torch/cuda/__init__.py:52: UserWarning: CUDA initialization: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx (Triggered internally at  /pytorch/c10/cuda/CUDAFunctions.cpp:100.)
+  return torch._C._cuda_getDeviceCount() > 0
+[SessionManager] Connection timeout detected (1605648119.9119005)
+[SessionManager] Connection timeout detected (1605648129.921168)
+[ERROR 2020-11-17 16:22:15,552] function_runner.py: 254  Runner Thread raised error.
+Traceback (most recent call last):
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 248, in run
+    self._entrypoint()
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 315, in entrypoint
+    return self._trainable_func(self.config, self._status_reporter,
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 575, in _trainable_func
+    output = fn()
+  File "run.py", line 7, in trainable
+    train.Experiment(**config['experiment_config']).train(**config['train_config'])
+  File "/home/avandekl/Documents/thesis/train.py", line 169, in train
+    obs_dict = self.env.reset()
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/gym/core.py", line 237, in reset
+    return self.env.reset(**kwargs)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/gym/core.py", line 237, in reset
+    return self.env.reset(**kwargs)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/gym/wrappers/time_limit.py", line 25, in reset
+    return self.env.reset(**kwargs)
+  File "/home/avandekl/Documents/thesis/kinova.py", line 115, in reset
+    self._set_to_home()
+  File "/home/avandekl/Documents/thesis/kinova.py", line 183, in _set_to_home
+    self.base.Unsubscribe(notification_handle)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/kortex_api/autogen/client_stubs/BaseClientRpc.py", line 872, in Unsubscribe
+    result = future.result(options.getTimeoutInSecond())
+  File "/home/avandekl/miniconda3/lib/python3.8/concurrent/futures/_base.py", line 441, in result
+    raise TimeoutError()
+concurrent.futures._base.TimeoutError
+Exception in thread Thread-2:
+Traceback (most recent call last):
+  File "/home/avandekl/miniconda3/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 267, in run
+    raise e
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 248, in run
+    self._entrypoint()
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 315, in entrypoint
+    return self._trainable_func(self.config, self._status_reporter,
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 575, in _trainable_func
+    output = fn()
+  File "run.py", line 7, in trainable
+    train.Experiment(**config['experiment_config']).train(**config['train_config'])
+  File "/home/avandekl/Documents/thesis/train.py", line 169, in train
+    obs_dict = self.env.reset()
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/gym/core.py", line 237, in reset
+    return self.env.reset(**kwargs)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/gym/core.py", line 237, in reset
+    return self.env.reset(**kwargs)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/gym/wrappers/time_limit.py", line 25, in reset
+    return self.env.reset(**kwargs)
+  File "/home/avandekl/Documents/thesis/kinova.py", line 115, in reset
+    self._set_to_home()
+  File "/home/avandekl/Documents/thesis/kinova.py", line 183, in _set_to_home
+    self.base.Unsubscribe(notification_handle)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/kortex_api/autogen/client_stubs/BaseClientRpc.py", line 872, in Unsubscribe
+    result = future.result(options.getTimeoutInSecond())
+  File "/home/avandekl/miniconda3/lib/python3.8/concurrent/futures/_base.py", line 441, in result
+    raise TimeoutError()
+concurrent.futures._base.TimeoutError

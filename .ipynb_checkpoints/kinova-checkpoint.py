@@ -16,6 +16,7 @@ import sys
 import os
 import time
 import threading
+import time
 
 from kortex_api.autogen.client_stubs.BaseClientRpc import BaseClient
 from kortex_api.autogen.client_stubs.BaseCyclicClientRpc import BaseCyclicClient
@@ -50,8 +51,8 @@ def check_for_end_or_abort(e):
         (will be set when an END or ABORT occurs)
     """
     def check(notification, e = e):
-#         print("EVENT : " + \
-#               Base_pb2.ActionEvent.Name(notification.action_event))
+        print("EVENT : " + \
+              Base_pb2.ActionEvent.Name(notification.action_event))
         if notification.action_event == Base_pb2.ACTION_END \
         or notification.action_event == Base_pb2.ACTION_ABORT:
             e.set()
@@ -60,7 +61,7 @@ def check_for_end_or_abort(e):
 class KinovaRobotEnv:
     metadata = {'render_modes':['rbg_array']}
     
-    def __init__(self, action_scale=0.05, target_range=0.5, distance_threshold=0.05, speed=0.05):
+    def __init__(self, action_scale=0.05, target_range=0.15, distance_threshold=0.05, speed=0.10):
         # Parse arguments to create connections later
         self.connection = utilities.DeviceConnection.createTcpConnection()
         self.router = self.connection.__enter__()
@@ -88,8 +89,9 @@ class KinovaRobotEnv:
         self.unwrapped = self
         self.spec = None
         
+        
+        self.init_xyz = np.asarray([0.3, 0, 0.3])
         self._set_to_home()
-        self.init_xyz = self._get_obs()[:3] # first three entries are xyz pos of EE.
         self.goal = None
         self.sample_goal()
         assert self.goal is not None
@@ -106,7 +108,7 @@ class KinovaRobotEnv:
     def sample_goal(self, target_range=None):
         if target_range is None:
             target_range = self.target_range
-        self.goal = self.init_xyz + (-1 + 2*np.random.rand(*self.action_space.shape))*self.target_range
+        self.goal = self.init_xyz + (-1 + 2*np.random.rand(*self.init_xyz.shape))*self.target_range
         return self.goal
     
     def reset(self):
@@ -115,12 +117,12 @@ class KinovaRobotEnv:
         return self._get_obs_dict()
     
     def step(self, act):
-        act *= self.action_scale
+        act = act.copy()*self.action_scale
             
         action = Base_pb2.Action()
         action.name = "Example Cartesian action movement"
         action.application_data = ""
-        
+
         action.reach_pose.constraint.speed.translation = self.speed
 
         feedback = self.base_cyclic.RefreshFeedback()
@@ -133,15 +135,19 @@ class KinovaRobotEnv:
         cartesian_pose.theta_y = feedback.base.tool_pose_theta_y # (degrees)
         cartesian_pose.theta_z = feedback.base.tool_pose_theta_z # (degrees)
 
-        e = threading.Event()
-        notification_handle = self.base.OnNotificationActionTopic(
-            check_for_end_or_abort(e),
-            Base_pb2.NotificationOptions()
-        )
+#         e = threading.Event()
+#         notification_handle = self.base.OnNotificationActionTopic(
+#             check_for_end_or_abort(e),
+#             Base_pb2.NotificationOptions()
+#         )
 
         self.base.ExecuteAction(action)
-        finished = e.wait(TIMEOUT_DURATION)
-        self.base.Unsubscribe(notification_handle)
+#         finished = e.wait(TIMEOUT_DURATION)
+#         self.base.Unsubscribe(notification_handle)
+
+        duration = (np.linalg.norm(act)/self.speed)*2
+        print(f'waiting w duration {duration}')
+        time.sleep(duration)
             
         obs_dict = self._get_obs_dict()
         info = dict()
@@ -153,39 +159,47 @@ class KinovaRobotEnv:
         done = True if np.abs(reward) < self.distance_threshold else False
         info['is_success'] = done
         return obs_dict, reward, done, info
-    
+        
+    def _set_to(self, xyz):
+        action = Base_pb2.Action()
+        action.name = "Example Cartesian action movement"
+        action.application_data = ""
+        
+        action.reach_pose.constraint.speed.translation = self.speed
+
+        feedback = self.base_cyclic.RefreshFeedback()
+        
+        current_pos = np.asarray([feedback.base.tool_pose_x, feedback.base.tool_pose_y, feedback.base.tool_pose_z])
+        
+        distance_to_init_xyz = np.linalg.norm(current_pos - self.init_xyz)
+        duration = 2.0*distance_to_init_xyz/self.speed
+        print(f'resetting w duration {duration}')
+        
+        cartesian_pose = action.reach_pose.target_pose
+        cartesian_pose.x = xyz[0]
+        cartesian_pose.y = xyz[1]
+        cartesian_pose.z = xyz[2]
+        cartesian_pose.theta_x = -180
+        cartesian_pose.theta_y = 0
+        cartesian_pose.theta_z = 90
+
+#         e = threading.Event()
+#         notification_handle = self.base.OnNotificationActionTopic(
+#             check_for_end_or_abort(e),
+#             Base_pb2.NotificationOptions()
+#         )
+
+        self.base.ExecuteAction(action)
+        time.sleep(duration)
+#         finished = e.wait(TIMEOUT_DURATION)
+#         self.base.Unsubscribe(notification_handle)
+
     def _set_to_home(self):
-        # Make sure the arm is in Single Level Servoing mode
-        base_servo_mode = Base_pb2.ServoingModeInformation()
-        base_servo_mode.servoing_mode = Base_pb2.SINGLE_LEVEL_SERVOING
-        self.base.SetServoingMode(base_servo_mode)
-
-        # Move arm to ready position
-#             print("Moving the arm to a safe position")
-        action_type = Base_pb2.RequestedActionType()
-        action_type.action_type = Base_pb2.REACH_JOINT_ANGLES
-        action_list = self.base.ReadAllActions(action_type)
-        action_handle = None
-        for action in action_list.action_list:
-            if action.name == "Home":
-                action_handle = action.handle
-
-        if action_handle == None:
-            raise RuntimeError("Could not reach a safe position.")
-            return False
-
-        e = threading.Event()
-        notification_handle = self.base.OnNotificationActionTopic(
-            check_for_end_or_abort(e),
-            Base_pb2.NotificationOptions()
-        )
-
-        self.base.ExecuteActionFromReference(action_handle)
-        finished = e.wait(TIMEOUT_DURATION)
-        self.base.Unsubscribe(notification_handle)
+        self._set_to(self.init_xyz)
     
     def compute_reward(self, achieved_goal, desired_goal, info):
-        return -np.linalg.norm(achieved_goal - desired_goal, axis=-1)
+        d = np.linalg.norm(achieved_goal - desired_goal, axis=-1)
+        return 0. if d < self.distance_threshold else -1.
             
     def _get_obs(self):
 
@@ -223,3 +237,5 @@ class KinovaRobotEnv:
     
 if __name__ == "__main__":
     env = KinovaRobotEnv()
+    import wrappers
+    env = wrappers.KinovaWrapper(env, 1, from_images=True, fix_goals=False)

@@ -4,6 +4,18 @@ import torch
 import copy
 import cv2
 
+def KinovaWrapper(env, seed, from_images=False, fix_goals=False,):
+    env = gym.wrappers.TimeLimit(env, 50)
+    env = DeterministicWrapper(env, seed)
+    if fix_goals:
+        env = FixedGoalEnv(env)
+    env = WebcamWrapper(env) # provide rendering via webcam
+    env = KinovaImageEnv(env) # record images
+    env = DoneOnSuccessWrapper(env) 
+    if from_images:
+        env = LatentDistanceRewardEnv(env)
+    return env
+
 def MultiWrapper(env, seed, from_images=True, fix_goals=False):
     """
     Combine the below wrappers in the appropriate order.
@@ -31,7 +43,7 @@ class WebcamWrapper(gym.Wrapper):
         ret, frame = self.webcam.read()
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         frame = cv2.resize(frame, (width, height))
-        frame = frame.T.copy()
+#         frame = frame.T.copy() # done in KinovaImageEnv
         return frame
 
 class FixedViewerWrapper(gym.Wrapper):
@@ -116,6 +128,61 @@ class FixedGoalEnv(gym.Wrapper):
         rew = self.env.compute_reward(obs_dict['achieved_goal'], obs_dict['desired_goal'], info)
         return obs_dict, rew, done, info
 
+class KinovaImageEnv(gym.Wrapper):
+    """
+    Adds `image_observation`, `image_achieved_goal` and `image_desired_goal` fields
+    to the observation dictionary. Use on real robot.
+    Later: make a base class that both kinova and reach inherit from.
+    """
+    def __init__(self, env, width=84, height=84):
+        super().__init__(env)
+        self.env = env
+        self.width = width
+        self.height = height
+        self.goal_img = None
+        self.observation_space.spaces.update(
+            image_observation=gym.spaces.Box(0, 255, (3, self.width, self.height)),
+            image_desired_goal=gym.spaces.Box(0, 255, (3, self.width, self.height)),
+            image_achieved_goal=gym.spaces.Box(0, 255, (3, self.width, self.height)),
+        )
+        self.reset()
+        
+    def reset(self):
+        obs_dict = self.env.reset()
+        initial_state = obs_dict['achieved_goal']
+        goal = obs_dict['desired_goal']
+        self.unwrapped._set_to(goal);
+        self.goal_img = self.env.render(mode='rgb_array', width=self.width, height=self.height).T.copy()
+        self.unwrapped._set_to(initial_state)
+        
+        obs_dict = self._update_obs_dict(obs_dict)
+        
+        return obs_dict
+    
+    def _update_obs_dict(self, obs_dict):
+        obs_dict['image_desired_goal'] = self.goal_img
+        obs_img = self.env.render(mode='rgb_array', width=self.width, height=self.height).T.copy()
+        obs_dict['image_observation'] = obs_img
+        obs_dict['image_achieved_goal'] = obs_img
+        
+        return obs_dict
+        
+    def _get_obs(self):
+        obs_dict = self.env.env._get_obs()
+        obs_dict = self._update_obs_dict(obs_dict)
+        return obs_dict
+    
+    def step(self, act):
+        obs_dict, rew, done, info = self.env.step(act)
+        obs_dict = self._update_obs_dict(obs_dict)
+        return obs_dict, rew, done, info
+    
+    def _set_to_goal(self, goal):
+        """
+        Goals are always xyz coordinates, either of gripper end effector or of object
+        """
+        self.unwrapped._set_to(goal)
+    
 class ImageEnv(gym.Wrapper):
     """
     Adds `image_observation`, `image_achieved_goal` and `image_desired_goal` fields
@@ -165,10 +232,6 @@ class ImageEnv(gym.Wrapper):
         obs_dict = self._update_obs_dict(obs_dict)
         return obs_dict, rew, done, info
     
-#     def compute_reward(self, achieved_goal, desired_goal, info):
-#         d = np.linalg.norm(achieved_goal - desired_goal, axis=-1)
-#         return -float(d > 0.05)
-        
     def _set_to_goal(self, goal):
         """
         Goals are always xyz coordinates, either of gripper end effector or of object
@@ -181,6 +244,8 @@ class ImageEnv(gym.Wrapper):
         self.env.sim.forward()
         for _ in range(100):
             self.env.sim.step()
+
+    
 
 class DoneOnSuccessWrapper(gym.Wrapper):
     def __init__(self, env):

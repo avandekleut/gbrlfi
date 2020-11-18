@@ -9,10 +9,10 @@ def trainable(config, checkpoint_dir=None):
 if __name__ == "__main__": 
     config = dict(
         experiment_config=dict(
-#             env_id=tune.grid_search(["FetchReach-v1",]),
+            env_id=tune.grid_search(["KinovaReach-v0",]),
             seed=tune.grid_search([1,]),
             num_resampled_goals=tune.grid_search([
-                1,
+                4,
             ]),
             feature_dim=tune.grid_search([
                 128,
@@ -29,13 +29,13 @@ if __name__ == "__main__":
             hidden_sizes=tune.grid_search([
                 [512, 512, 512],
             ]),
-            from_images=tune.grid_search([False,]),
+            from_images=tune.grid_search([True,]),
         ),
         train_config=dict(
             num_timesteps=tune.grid_search([20_000,]),
             num_seed_steps=tune.grid_search([1_000,]),
             update_after=tune.grid_search([1_000,]),
-            eval_every=tune.grid_search([1_000,]),
+            eval_every=tune.grid_search([10,]),
             gradient_steps=tune.grid_search([1,]),
         ),
     )

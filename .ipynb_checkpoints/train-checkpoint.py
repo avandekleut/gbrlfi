@@ -25,7 +25,7 @@ class Experiment(object):
     def __init__(
             self,
             # environment
-#             env_id,
+            env_id,
         
             # visual?
 #             from_images=True,
@@ -65,9 +65,11 @@ class Experiment(object):
         utils.set_seed_everywhere(seed)
 
 #         # Create env
-        self.env = gym.make("KinovaReach-v0")
-#         self.env = wrappers.MultiWrapper(self.env, seed, fix_goals)
-        self.env = gym.wrappers.TimeLimit(self.env, 50)
+        self.env = gym.make(env_id)
+        if 'Kinova' in env_id:
+            self.env = wrappers.KinovaWrapper(self.env, seed, from_images, fix_goals)
+        else:
+            self.env = wrappers.MultiWrapper(self.env, seed, from_images, fix_goals)
 
         # Create agent
         self.agent = Agent(
@@ -103,9 +105,9 @@ class Experiment(object):
         )
 
         self.step = 0
-        
+    
     def eval(self,
-            num_eval_episodes=10,
+            num_eval_episodes=5,
         ):
         
         average_episode_reward = 0
@@ -157,7 +159,7 @@ class Experiment(object):
             num_timesteps=4_000_000, # maximum time steps
             num_seed_steps=10_000, # random actions to improve exploration
             update_after=1_000, # when to start updating (off-policy still learns from seed steps)
-            eval_every=1_000, # episodic frequency for evaluation
+            eval_every=10, # episodic frequency for evaluation
         ):
         
         episode = 0
@@ -206,10 +208,12 @@ class Experiment(object):
                 **self.agent.info,
             )
             
-            if episode % eval_every == 0:
-                self.eval()
-                
             episode += 1
+            if self.step >= update_after:
+                if episode % eval_every == 0:
+                    self.eval()
+                
+
         
         # one final test
         self.eval()

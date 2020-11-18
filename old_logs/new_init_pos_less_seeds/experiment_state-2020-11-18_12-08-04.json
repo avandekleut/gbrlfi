@@ -2,9 +2,10 @@
   "checkpoints": [
     {
       "trainable_name": "trainable",
-      "trial_id": "cab72_00000",
+      "trial_id": "9f5ae_00000",
       "config": {
         "experiment_config": {
+          "env_id": "KinovaReach-v0",
           "seed": 1,
           "num_resampled_goals": 1,
           "feature_dim": 128,
@@ -19,17 +20,18 @@
           "from_images": false
         },
         "train_config": {
-          "num_timesteps": 20000,
-          "num_seed_steps": 1000,
-          "update_after": 1000,
-          "eval_every": 1000,
-          "gradient_steps": 1
+          "num_timesteps": 100000,
+          "num_seed_steps": 100,
+          "update_after": 100,
+          "eval_every": 20,
+          "gradient_steps": 40
         }
       },
-      "local_dir": "/home/avandekl/Documents/thesis/logs/20-11-16-15_10",
+      "local_dir": "/home/avandekl/Documents/thesis/logs/new_init_pos_less_seeds",
       "evaluated_params": {
         "experiment_config/batch_size": 128,
         "experiment_config/critic_tau": 0.005,
+        "experiment_config/env_id": "KinovaReach-v0",
         "experiment_config/feature_dim": 128,
         "experiment_config/from_images": false,
         "experiment_config/hidden_sizes": [
@@ -40,13 +42,13 @@
         "experiment_config/lr": 0.0006,
         "experiment_config/num_resampled_goals": 1,
         "experiment_config/seed": 1,
-        "train_config/eval_every": 1000,
-        "train_config/gradient_steps": 1,
-        "train_config/num_seed_steps": 1000,
-        "train_config/num_timesteps": 20000,
-        "train_config/update_after": 1000
+        "train_config/eval_every": 20,
+        "train_config/gradient_steps": 40,
+        "train_config/num_seed_steps": 100,
+        "train_config/num_timesteps": 100000,
+        "train_config/update_after": 100
       },
-      "experiment_tag": "0_batch_size=128,critic_tau=0.005,feature_dim=128,from_images=False,hidden_sizes=[512, 512, 512],lr=0.0006,num_resampled_goals=1,seed=1,eval_every=1000,gradient_steps=1,num_seed_steps=1000,num_timesteps=20000,update_after=1000",
+      "experiment_tag": "0_batch_size=128,critic_tau=0.005,env_id=KinovaReach-v0,feature_dim=128,from_images=False,hidden_sizes=[512, 512, 512],lr=0.0006,num_resampled_goals=1,seed=1,eval_every=20,gradient_steps=40,num_seed_steps=100,num_timesteps=100000,update_after=100",
       "location": {
         "_type": "CLOUDPICKLE_FALLBACK",
         "value": "8005953a000000000000008c0e7261792e74756e652e747269616c948c084c6f636174696f6e9493942981947d94288c08686f73746e616d65944e8c03706964944e75622e"
@@ -83,7 +85,7 @@
       "export_formats": [],
       "status": "PENDING",
       "start_time": null,
-      "logdir": "/home/avandekl/Documents/thesis/logs/20-11-16-15_10/trainable_cab72_00000_0_batch_size=128,critic_tau=0.005,feature_dim=128,from_images=False,hidden_sizes=[512, 512, 512],lr=0.0006,n_2020-11-16_15-10-37",
+      "logdir": "/home/avandekl/Documents/thesis/logs/new_init_pos_less_seeds/trainable_9f5ae_00000_0_batch_size=128,critic_tau=0.005,env_id=KinovaReach-v0,feature_dim=128,from_images=False,hidden_sizes=[512,_2020-11-18_12-08-04",
       "runner": null,
       "result_logger": null,
       "last_debug": 0,
@@ -124,30 +126,30 @@
   ],
   "runner_data": {
     "_metric": null,
-    "_total_time": 3347.3097949028015,
-    "_iteration": 47,
+    "_total_time": 865.3748984336853,
+    "_iteration": 6,
     "_has_errored": false,
     "_fail_fast": false,
     "_verbose": true,
     "_server_port": null,
     "_cached_trial_decisions": {},
     "_should_stop_experiment": false,
-    "_local_checkpoint_dir": "/home/avandekl/Documents/thesis/logs/20-11-16-15_10",
+    "_local_checkpoint_dir": "/home/avandekl/Documents/thesis/logs/new_init_pos_less_seeds",
     "_remote_checkpoint_dir": null,
     "_stopper": {
       "_type": "CLOUDPICKLE_FALLBACK",
       "value": "80059527000000000000008c107261792e74756e652e73746f70706572948c0b4e6f6f7053746f707065729493942981942e"
     },
     "_resumed": false,
-    "_start_time": 1605557437.3724852,
-    "_last_checkpoint_time": 1605560785.6403997,
+    "_start_time": 1605719284.8931246,
+    "_last_checkpoint_time": 1605720151.2266312,
     "_checkpoint_period": 10,
-    "_session_str": "2020-11-16_15-10-37",
-    "checkpoint_file": "/home/avandekl/Documents/thesis/logs/20-11-16-15_10/experiment_state-2020-11-16_15-10-37.json",
+    "_session_str": "2020-11-18_12-08-04",
+    "checkpoint_file": "/home/avandekl/Documents/thesis/logs/new_init_pos_less_seeds/experiment_state-2020-11-18_12-08-04.json",
     "launch_web_server": false
   },
   "stats": {
-    "start_time": 1605557437.3724852,
-    "timestamp": 1605560785.6403997
+    "start_time": 1605719284.8931246,
+    "timestamp": 1605720151.2266312
   }
 }

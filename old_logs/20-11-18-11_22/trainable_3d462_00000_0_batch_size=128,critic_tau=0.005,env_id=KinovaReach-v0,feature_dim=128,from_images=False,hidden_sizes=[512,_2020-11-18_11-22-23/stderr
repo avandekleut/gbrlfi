@@ -1,0 +1,56 @@
+/home/avandekl/miniconda3/lib/python3.8/site-packages/torch/cuda/__init__.py:52: UserWarning: CUDA initialization: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx (Triggered internally at  /pytorch/c10/cuda/CUDAFunctions.cpp:100.)
+  return torch._C._cuda_getDeviceCount() > 0
+[ERROR 2020-11-18 11:22:27,817] function_runner.py: 254  Runner Thread raised error.
+Traceback (most recent call last):
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 248, in run
+    self._entrypoint()
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 315, in entrypoint
+    return self._trainable_func(self.config, self._status_reporter,
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 575, in _trainable_func
+    output = fn()
+  File "run.py", line 7, in trainable
+    train.Experiment(**config['experiment_config']).train(**config['train_config'])
+  File "/home/avandekl/Documents/thesis/train.py", line 70, in __init__
+    self.env = wrappers.KinovaWrapper(self.env, seed, fix_goals)
+  File "/home/avandekl/Documents/thesis/wrappers.py", line 13, in KinovaWrapper
+    env = ImageEnv(env) # record images
+  File "/home/avandekl/Documents/thesis/wrappers.py", line 146, in __init__
+    self.reset()
+  File "/home/avandekl/Documents/thesis/wrappers.py", line 150, in reset
+    initial_state = self.env.sim.get_state()
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/gym/core.py", line 223, in __getattr__
+    return getattr(self.env, name)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/gym/core.py", line 223, in __getattr__
+    return getattr(self.env, name)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/gym/core.py", line 223, in __getattr__
+    return getattr(self.env, name)
+AttributeError: 'KinovaRobotEnv' object has no attribute 'sim'
+Exception in thread Thread-2:
+Traceback (most recent call last):
+  File "/home/avandekl/miniconda3/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 267, in run
+    raise e
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 248, in run
+    self._entrypoint()
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 315, in entrypoint
+    return self._trainable_func(self.config, self._status_reporter,
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 575, in _trainable_func
+    output = fn()
+  File "run.py", line 7, in trainable
+    train.Experiment(**config['experiment_config']).train(**config['train_config'])
+  File "/home/avandekl/Documents/thesis/train.py", line 70, in __init__
+    self.env = wrappers.KinovaWrapper(self.env, seed, fix_goals)
+  File "/home/avandekl/Documents/thesis/wrappers.py", line 13, in KinovaWrapper
+    env = ImageEnv(env) # record images
+  File "/home/avandekl/Documents/thesis/wrappers.py", line 146, in __init__
+    self.reset()
+  File "/home/avandekl/Documents/thesis/wrappers.py", line 150, in reset
+    initial_state = self.env.sim.get_state()
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/gym/core.py", line 223, in __getattr__
+    return getattr(self.env, name)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/gym/core.py", line 223, in __getattr__
+    return getattr(self.env, name)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/gym/core.py", line 223, in __getattr__
+    return getattr(self.env, name)
+AttributeError: 'KinovaRobotEnv' object has no attribute 'sim'
