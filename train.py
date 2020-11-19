@@ -113,8 +113,8 @@ class Experiment(object):
         average_episode_reward = 0
         average_episode_success = 0
         
-#         video_recorder = VideoRecorder()
-#         video_recorder.init()
+        video_recorder = VideoRecorder()
+        video_recorder.init()
         
         for episode in range(num_eval_episodes):
             
@@ -139,12 +139,12 @@ class Experiment(object):
                 obs_g = next_obs_dict[self.desired_goal_key]
                 episode_step += 1
                 
-#                 video_recorder.record(next_obs_dict)
+                video_recorder.record(next_obs_dict)
             
             average_episode_reward += episode_reward/num_eval_episodes
             average_episode_success += float(info['is_success'])/num_eval_episodes
             
-#         video_recorder.save(f'{self.step}.mp4')
+        video_recorder.save(f'{self.step}.mp4')
         
         tune.report(
             eval_reward=average_episode_reward,

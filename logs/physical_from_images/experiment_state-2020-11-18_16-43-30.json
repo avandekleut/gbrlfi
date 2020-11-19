@@ -126,8 +126,8 @@
   ],
   "runner_data": {
     "_metric": null,
-    "_total_time": 69.76379156112671,
-    "_iteration": 2,
+    "_total_time": 17429.788791656494,
+    "_iteration": 74,
     "_has_errored": false,
     "_fail_fast": false,
     "_verbose": true,
@@ -142,7 +142,7 @@
     },
     "_resumed": false,
     "_start_time": 1605735810.5322554,
-    "_last_checkpoint_time": 1605735881.2189457,
+    "_last_checkpoint_time": 1605753241.2628317,
     "_checkpoint_period": 10,
     "_session_str": "2020-11-18_16-43-30",
     "checkpoint_file": "/home/avandekl/Documents/thesis/logs/physical_from_images/experiment_state-2020-11-18_16-43-30.json",
@@ -150,6 +150,6 @@
   },
   "stats": {
     "start_time": 1605735810.5322554,
-    "timestamp": 1605735881.2189457
+    "timestamp": 1605753241.2628317
   }
 }
