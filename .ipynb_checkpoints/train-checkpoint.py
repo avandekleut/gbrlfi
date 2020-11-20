@@ -207,11 +207,11 @@ class Experiment(object):
                 timesteps_this_iter=episode_step,
                 **self.agent.info,
             )
-            
+
+            if episode % eval_every == 0:
+                self.eval()
             episode += 1
-            if self.step >= update_after:
-                if episode % eval_every == 0:
-                    self.eval()
+
                 
 
         

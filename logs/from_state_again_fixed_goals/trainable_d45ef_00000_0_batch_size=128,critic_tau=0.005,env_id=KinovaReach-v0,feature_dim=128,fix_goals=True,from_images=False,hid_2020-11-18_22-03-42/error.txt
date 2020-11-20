@@ -1,0 +1,54 @@
+Failure # 1 (occurred at 2020-11-18_22-31-25)
+Traceback (most recent call last):
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/trial_runner.py", line 726, in _process_trial
+    result = self.trial_executor.fetch_result(trial)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/ray_trial_executor.py", line 489, in fetch_result
+    result = ray.get(trial_future[0], timeout=DEFAULT_GET_TIMEOUT)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/worker.py", line 1452, in get
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(TuneError): [36mray::ImplicitFunc.train()[39m (pid=2104, ip=10.32.116.100)
+  File "python/ray/_raylet.pyx", line 482, in ray._raylet.execute_task
+  File "python/ray/_raylet.pyx", line 436, in ray._raylet.execute_task.function_executor
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/trainable.py", line 336, in train
+    result = self.step()
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 366, in step
+    self._report_thread_runner_error(block=True)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 512, in _report_thread_runner_error
+    raise TuneError(("Trial raised an exception. Traceback:\n{}"
+ray.tune.error.TuneError: Trial raised an exception. Traceback:
+[36mray::ImplicitFunc.train()[39m (pid=2104, ip=10.32.116.100)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/imageio/plugins/ffmpeg.py", line 59, in _get_ffmpeg_api
+    import imageio_ffmpeg
+ModuleNotFoundError: No module named 'imageio_ffmpeg'
+
+During handling of the above exception, another exception occurred:
+
+[36mray::ImplicitFunc.train()[39m (pid=2104, ip=10.32.116.100)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 248, in run
+    self._entrypoint()
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 315, in entrypoint
+    return self._trainable_func(self.config, self._status_reporter,
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 575, in _trainable_func
+    output = fn()
+  File "run.py", line 7, in trainable
+    train.Experiment(**config['experiment_config']).train(**config['train_config'])
+  File "/home/avandekl/Documents/thesis/train.py", line 214, in train
+    self.eval()
+  File "/home/avandekl/Documents/thesis/train.py", line 147, in eval
+    video_recorder.save(f'{self.step}.mp4')
+  File "/home/avandekl/Documents/thesis/video.py", line 45, in save
+    imageio.mimsave(path, self.frames, fps=self.fps)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/imageio/core/functions.py", line 397, in mimwrite
+    writer = get_writer(uri, format, "I", **kwargs)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/imageio/core/functions.py", line 231, in get_writer
+    return format.get_writer(request)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/imageio/core/format.py", line 185, in get_writer
+    return self.Writer(self, request)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/imageio/core/format.py", line 221, in __init__
+    self._open(**self.request.kwargs.copy())
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/imageio/plugins/ffmpeg.py", line 525, in _open
+    self._ffmpeg_api = _get_ffmpeg_api()
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/imageio/plugins/ffmpeg.py", line 61, in _get_ffmpeg_api
+    raise ImportError(
+ImportError: To use the imageio ffmpeg plugin you need to 'pip install imageio-ffmpeg'
+

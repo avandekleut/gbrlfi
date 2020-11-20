@@ -9,7 +9,6 @@ def KinovaWrapper(env, seed, from_images=False, fix_goals=False,):
     env = DeterministicWrapper(env, seed)
     if fix_goals:
         env = FixedGoalEnv(env)
-    env = WebcamWrapper(env) # provide rendering via webcam
     env = KinovaImageEnv(env) # record images
     env = DoneOnSuccessWrapper(env) 
     if from_images:
@@ -29,22 +28,6 @@ def MultiWrapper(env, seed, from_images=True, fix_goals=False):
     if from_images:
         env = LatentDistanceRewardEnv(env)
     return env
-
-class WebcamWrapper(gym.Wrapper):
-    """
-    Replaces calls to `render` with reading images from a webcam.
-    Used for learning from images in physical robot.
-    """
-    def __init__(self, env):
-        super(WebcamWrapper, self).__init__(env)
-        self.webcam = cv2.VideoCapture(0)
-        
-    def render(self, mode='rgb_array', width=84, height=84):
-        ret, frame = self.webcam.read()
-        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        frame = cv2.resize(frame, (width, height))
-#         frame = frame.T.copy() # done in KinovaImageEnv
-        return frame
 
 class FixedViewerWrapper(gym.Wrapper):
     """

@@ -1,17 +1,3 @@
-
-
-###
-# KINOVA (R) KORTEX (TM)
-#
-# Copyright (c) 2018 Kinova inc. All rights reserved.
-#
-# This software may be modified and distributed
-# under the terms of the BSD 3-Clause license.
-#
-# Refer to the LICENSE file for details.
-#
-###
-
 import sys
 import os
 import time
@@ -23,14 +9,13 @@ from kortex_api.autogen.client_stubs.BaseCyclicClientRpc import BaseCyclicClient
 
 from kortex_api.autogen.messages import Base_pb2, BaseCyclic_pb2, Common_pb2
 
-# import kortex_api
-# print(kortex_api.__file__)
-
 import utilities
 
 import gym
 import numpy as np
 from gym.envs.registration import register
+
+import cv2
 
 def register_env():
     register(
@@ -38,47 +23,25 @@ def register_env():
         entry_point='kinova:KinovaRobotEnv',
     )
 
-# Maximum allowed waiting time during actions (in seconds)
-TIMEOUT_DURATION = 20
-
-
-# Create closure to set an event after an END or an ABORT
-def check_for_end_or_abort(e):
-    """Return a closure checking for END or ABORT notifications
-
-    Arguments:
-    e -- event to signal when the action is completed
-        (will be set when an END or ABORT occurs)
-    """
-    def check(notification, e = e):
-        print("EVENT : " + \
-              Base_pb2.ActionEvent.Name(notification.action_event))
-        if notification.action_event == Base_pb2.ACTION_END \
-        or notification.action_event == Base_pb2.ACTION_ABORT:
-            e.set()
-    return check
-
 class KinovaRobotEnv:
-    metadata = {'render_modes':['rbg_array']}
+    metadata = {'render_modes':['human', 'rbg_array']}
     
     def __init__(self, action_scale=0.05, target_range=0.15, distance_threshold=0.05, speed=0.10):
-        # Parse arguments to create connections later
         self.connection = utilities.DeviceConnection.createTcpConnection()
         self.router = self.connection.__enter__()
         self.base = BaseClient(self.router)
         self.base_cyclic = BaseCyclicClient(self.router)
         
-        # Env params
-        # action_scale multiplies actions to make them smaller
-        # target_range gives the +/- distance that goals are sampled from initial gripper pos. 
-        # distance_threshold is used for success criterion and sparse reward.
+
+        self.webcam = cv2.VideoCapture(0)
+        
         self.action_scale = action_scale
         self.target_range = target_range
         self.distance_threshold = distance_threshold
         self.speed = speed
         
         self.observation_space = gym.spaces.Dict(
-            observation=gym.spaces.Box(-np.inf, np.inf, (12,)),
+            observation=gym.spaces.Box(-np.inf, np.inf, self._get_obs().shape),
             achieved_goal=gym.spaces.Box(-np.inf, np.inf, (3,)),
             desired_goal=gym.spaces.Box(-np.inf, np.inf, (3,)),
             
@@ -89,9 +52,8 @@ class KinovaRobotEnv:
         self.unwrapped = self
         self.spec = None
         
-        
-        self.init_xyz = np.asarray([0.3, 0, 0.3])
         self._set_to_home()
+        self.init_xyz = self._get_obs()[:3]
         self.goal = None
         self.sample_goal()
         assert self.goal is not None
@@ -102,8 +64,14 @@ class KinovaRobotEnv:
     def close(self):        
         self.connection.__exit__(None, None, None)
         
-    def render(self, mode='rgb_array'):
-        return np.zeros(3, 84, 84)
+    def render(self, mode='human', width=84, height=84):
+        ret, frame = self.webcam.read()
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        if mode == 'human':
+            cv2.imshow('', frame)
+        elif mode == 'rgb_array':
+            frame = cv2.resize(frame, (width, height))
+            return frame
         
     def sample_goal(self, target_range=None):
         if target_range is None:
@@ -179,9 +147,9 @@ class KinovaRobotEnv:
         cartesian_pose.x = xyz[0]
         cartesian_pose.y = xyz[1]
         cartesian_pose.z = xyz[2]
-        cartesian_pose.theta_x = -180
-        cartesian_pose.theta_y = 0
-        cartesian_pose.theta_z = 90
+#         cartesian_pose.theta_x = -180
+#         cartesian_pose.theta_y = 0
+#         cartesian_pose.theta_z = 90
 
 #         e = threading.Event()
 #         notification_handle = self.base.OnNotificationActionTopic(
@@ -195,11 +163,36 @@ class KinovaRobotEnv:
 #         self.base.Unsubscribe(notification_handle)
 
     def _set_to_home(self):
-        self._set_to(self.init_xyz)
+        # Make sure the arm is in Single Level Servoing mode
+        base_servo_mode = Base_pb2.ServoingModeInformation()
+        base_servo_mode.servoing_mode = Base_pb2.SINGLE_LEVEL_SERVOING
+        self.base.SetServoingMode(base_servo_mode)
+
+        # Move arm to ready position
+        print("Moving the arm to a safe position")
+        action_type = Base_pb2.RequestedActionType()
+        action_type.action_type = Base_pb2.REACH_JOINT_ANGLES
+        action_list = self.base.ReadAllActions(action_type)
+        action_handle = None
+        for action in action_list.action_list:
+            if action.name == "Home":
+                action_handle = action.handle
+
+        if action_handle == None:
+            raise Run("Can't reach safe position. Exiting")
+
+        
+        self.base.ExecuteActionFromReference(action_handle)
+        print('Resetting for duration 6')
+        time.sleep(6)
     
     def compute_reward(self, achieved_goal, desired_goal, info):
         d = np.linalg.norm(achieved_goal - desired_goal, axis=-1)
         return 0. if d < self.distance_threshold else -1.
+    
+    def _is_success(self, achieved_goal, desired_goal):
+        d = np.linalg.norm(achieved_goal - desired_goal, axis=-1)
+        return True if d < self.distance_threshold else False
             
     def _get_obs(self):
 
@@ -209,15 +202,15 @@ class KinovaRobotEnv:
             feedback.base.tool_pose_x,
             feedback.base.tool_pose_y,
             feedback.base.tool_pose_z,
-            feedback.base.tool_pose_theta_x,
-            feedback.base.tool_pose_theta_y,
-            feedback.base.tool_pose_theta_z,
-            feedback.base.tool_twist_linear_x,
-            feedback.base.tool_twist_linear_y,
-            feedback.base.tool_twist_linear_z,
-            feedback.base.tool_twist_angular_x,
-            feedback.base.tool_twist_angular_y,
-            feedback.base.tool_twist_angular_z,
+#             feedback.base.tool_pose_theta_x,
+#             feedback.base.tool_pose_theta_y,
+#             feedback.base.tool_pose_theta_z,
+#             feedback.base.tool_twist_linear_x,
+#             feedback.base.tool_twist_linear_y,
+#             feedback.base.tool_twist_linear_z,
+#             feedback.base.tool_twist_angular_x,
+#             feedback.base.tool_twist_angular_y,
+#             feedback.base.tool_twist_angular_z,
         ])
 
         return observation
@@ -238,4 +231,4 @@ class KinovaRobotEnv:
 if __name__ == "__main__":
     env = KinovaRobotEnv()
     import wrappers
-    env = wrappers.KinovaWrapper(env, 1, from_images=True, fix_goals=False)
+#     env = wrappers.KinovaWrapper(env, 1, from_images=True, fix_goals=False)

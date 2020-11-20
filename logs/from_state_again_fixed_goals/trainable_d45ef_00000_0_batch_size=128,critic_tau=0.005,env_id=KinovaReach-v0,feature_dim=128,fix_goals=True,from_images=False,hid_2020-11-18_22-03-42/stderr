@@ -1,0 +1,78 @@
+/home/avandekl/miniconda3/lib/python3.8/site-packages/torch/cuda/__init__.py:52: UserWarning: CUDA initialization: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx (Triggered internally at  /pytorch/c10/cuda/CUDAFunctions.cpp:100.)
+  return torch._C._cuda_getDeviceCount() > 0
+[ERROR 2020-11-18 22:31:25,913] function_runner.py: 254  Runner Thread raised error.
+Traceback (most recent call last):
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/imageio/plugins/ffmpeg.py", line 59, in _get_ffmpeg_api
+    import imageio_ffmpeg
+ModuleNotFoundError: No module named 'imageio_ffmpeg'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 248, in run
+    self._entrypoint()
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 315, in entrypoint
+    return self._trainable_func(self.config, self._status_reporter,
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 575, in _trainable_func
+    output = fn()
+  File "run.py", line 7, in trainable
+    train.Experiment(**config['experiment_config']).train(**config['train_config'])
+  File "/home/avandekl/Documents/thesis/train.py", line 214, in train
+    self.eval()
+  File "/home/avandekl/Documents/thesis/train.py", line 147, in eval
+    video_recorder.save(f'{self.step}.mp4')
+  File "/home/avandekl/Documents/thesis/video.py", line 45, in save
+    imageio.mimsave(path, self.frames, fps=self.fps)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/imageio/core/functions.py", line 397, in mimwrite
+    writer = get_writer(uri, format, "I", **kwargs)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/imageio/core/functions.py", line 231, in get_writer
+    return format.get_writer(request)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/imageio/core/format.py", line 185, in get_writer
+    return self.Writer(self, request)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/imageio/core/format.py", line 221, in __init__
+    self._open(**self.request.kwargs.copy())
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/imageio/plugins/ffmpeg.py", line 525, in _open
+    self._ffmpeg_api = _get_ffmpeg_api()
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/imageio/plugins/ffmpeg.py", line 61, in _get_ffmpeg_api
+    raise ImportError(
+ImportError: To use the imageio ffmpeg plugin you need to 'pip install imageio-ffmpeg'
+Exception in thread Thread-2:
+Traceback (most recent call last):
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/imageio/plugins/ffmpeg.py", line 59, in _get_ffmpeg_api
+    import imageio_ffmpeg
+ModuleNotFoundError: No module named 'imageio_ffmpeg'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/avandekl/miniconda3/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 267, in run
+    raise e
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 248, in run
+    self._entrypoint()
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 315, in entrypoint
+    return self._trainable_func(self.config, self._status_reporter,
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 575, in _trainable_func
+    output = fn()
+  File "run.py", line 7, in trainable
+    train.Experiment(**config['experiment_config']).train(**config['train_config'])
+  File "/home/avandekl/Documents/thesis/train.py", line 214, in train
+    self.eval()
+  File "/home/avandekl/Documents/thesis/train.py", line 147, in eval
+    video_recorder.save(f'{self.step}.mp4')
+  File "/home/avandekl/Documents/thesis/video.py", line 45, in save
+    imageio.mimsave(path, self.frames, fps=self.fps)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/imageio/core/functions.py", line 397, in mimwrite
+    writer = get_writer(uri, format, "I", **kwargs)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/imageio/core/functions.py", line 231, in get_writer
+    return format.get_writer(request)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/imageio/core/format.py", line 185, in get_writer
+    return self.Writer(self, request)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/imageio/core/format.py", line 221, in __init__
+    self._open(**self.request.kwargs.copy())
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/imageio/plugins/ffmpeg.py", line 525, in _open
+    self._ffmpeg_api = _get_ffmpeg_api()
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/imageio/plugins/ffmpeg.py", line 61, in _get_ffmpeg_api
+    raise ImportError(
+ImportError: To use the imageio ffmpeg plugin you need to 'pip install imageio-ffmpeg'

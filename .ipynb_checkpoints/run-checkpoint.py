@@ -29,7 +29,10 @@ if __name__ == "__main__":
             hidden_sizes=tune.grid_search([
                 [512, 512, 512],
             ]),
-            from_images=tune.grid_search([True,]),
+            
+            
+            from_images=tune.grid_search([False,]),
+            fix_goals=tune.grid_search([False, ])
         ),
         train_config=dict(
             num_timesteps=tune.grid_search([20_000,]),
