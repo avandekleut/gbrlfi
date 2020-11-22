@@ -136,7 +136,7 @@ class KinovaImageEnv(gym.Wrapper):
         goal = obs_dict['desired_goal']
         self.unwrapped._set_to(goal);
         self.goal_img = self.env.render(mode='rgb_array', width=self.width, height=self.height).T.copy()
-        self.unwrapped._set_to(initial_state)
+        self.unwrapped._set_to(initial_state) # NOT "reset()" since we 
         
         obs_dict = self._update_obs_dict(obs_dict)
         

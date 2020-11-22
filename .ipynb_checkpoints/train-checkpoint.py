@@ -175,9 +175,13 @@ class Experiment(object):
 
             while not done:
                 if self.step < num_seed_steps:
+                    print('random action')
                     action = self.env.action_space.sample()
                 else:
+                    print('policy action')
                     action = self.agent.act(obs, obs_g, sample=True)
+                    
+                print(f'obs: {obs}\nobs g: {obs_g}')
 
                 next_obs_dict, reward, done, info = self.env.step(action)
                 next_obs = next_obs_dict[self.observation_key]

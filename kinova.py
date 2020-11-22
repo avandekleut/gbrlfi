@@ -33,7 +33,7 @@ class KinovaRobotEnv:
         self.base_cyclic = BaseCyclicClient(self.router)
         
 
-        self.webcam = cv2.VideoCapture(0)
+#         self.webcam = cv2.VideoCapture(0)
         
         self.action_scale = action_scale
         self.target_range = target_range
@@ -65,13 +65,14 @@ class KinovaRobotEnv:
         self.connection.__exit__(None, None, None)
         
     def render(self, mode='human', width=84, height=84):
-        ret, frame = self.webcam.read()
-        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        if mode == 'human':
-            cv2.imshow('', frame)
-        elif mode == 'rgb_array':
-            frame = cv2.resize(frame, (width, height))
-            return frame
+        return np.zeros((width, height, 3))
+#         ret, frame = self.webcam.read()
+#         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+#         if mode == 'human':
+#             cv2.imshow('', frame)
+#         elif mode == 'rgb_array':
+#             frame = cv2.resize(frame, (width, height))
+#             return frame
         
     def sample_goal(self, target_range=None):
         if target_range is None:
@@ -85,6 +86,7 @@ class KinovaRobotEnv:
         return self._get_obs_dict()
     
     def step(self, act):
+        print(f'act: {act}')
         act = act.copy()*self.action_scale
             
         action = Base_pb2.Action()
@@ -103,18 +105,10 @@ class KinovaRobotEnv:
         cartesian_pose.theta_y = feedback.base.tool_pose_theta_y # (degrees)
         cartesian_pose.theta_z = feedback.base.tool_pose_theta_z # (degrees)
 
-#         e = threading.Event()
-#         notification_handle = self.base.OnNotificationActionTopic(
-#             check_for_end_or_abort(e),
-#             Base_pb2.NotificationOptions()
-#         )
-
         self.base.ExecuteAction(action)
-#         finished = e.wait(TIMEOUT_DURATION)
-#         self.base.Unsubscribe(notification_handle)
 
-        duration = (np.linalg.norm(act)/self.speed)*2
-        print(f'waiting w duration {duration}')
+        duration = 1. + (np.linalg.norm(act)/self.speed)
+        print(f'step w duration {duration}')
         time.sleep(duration)
             
         obs_dict = self._get_obs_dict()
@@ -139,28 +133,20 @@ class KinovaRobotEnv:
         
         current_pos = np.asarray([feedback.base.tool_pose_x, feedback.base.tool_pose_y, feedback.base.tool_pose_z])
         
-        distance_to_init_xyz = np.linalg.norm(current_pos - self.init_xyz)
-        duration = 2.0*distance_to_init_xyz/self.speed
-        print(f'resetting w duration {duration}')
+        distance_to_xyz = np.linalg.norm(current_pos - xyz)
+        duration = 1. + (distance_to_xyz/self.speed)
+        print(f'_set_to w duration {duration}')
         
         cartesian_pose = action.reach_pose.target_pose
         cartesian_pose.x = xyz[0]
         cartesian_pose.y = xyz[1]
         cartesian_pose.z = xyz[2]
-#         cartesian_pose.theta_x = -180
-#         cartesian_pose.theta_y = 0
-#         cartesian_pose.theta_z = 90
-
-#         e = threading.Event()
-#         notification_handle = self.base.OnNotificationActionTopic(
-#             check_for_end_or_abort(e),
-#             Base_pb2.NotificationOptions()
-#         )
+        cartesian_pose.theta_x = feedback.base.tool_pose_theta_x  # (degrees)
+        cartesian_pose.theta_y = feedback.base.tool_pose_theta_y # (degrees)
+        cartesian_pose.theta_z = feedback.base.tool_pose_theta_z # (degrees)
 
         self.base.ExecuteAction(action)
         time.sleep(duration)
-#         finished = e.wait(TIMEOUT_DURATION)
-#         self.base.Unsubscribe(notification_handle)
 
     def _set_to_home(self):
         # Make sure the arm is in Single Level Servoing mode
@@ -202,15 +188,6 @@ class KinovaRobotEnv:
             feedback.base.tool_pose_x,
             feedback.base.tool_pose_y,
             feedback.base.tool_pose_z,
-#             feedback.base.tool_pose_theta_x,
-#             feedback.base.tool_pose_theta_y,
-#             feedback.base.tool_pose_theta_z,
-#             feedback.base.tool_twist_linear_x,
-#             feedback.base.tool_twist_linear_y,
-#             feedback.base.tool_twist_linear_z,
-#             feedback.base.tool_twist_angular_x,
-#             feedback.base.tool_twist_angular_y,
-#             feedback.base.tool_twist_angular_z,
         ])
 
         return observation
@@ -230,5 +207,3 @@ class KinovaRobotEnv:
     
 if __name__ == "__main__":
     env = KinovaRobotEnv()
-    import wrappers
-#     env = wrappers.KinovaWrapper(env, 1, from_images=True, fix_goals=False)

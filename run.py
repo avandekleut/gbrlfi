@@ -31,8 +31,9 @@ if __name__ == "__main__":
             ]),
             
             
-            from_images=tune.grid_search([False,]),
-            fix_goals=tune.grid_search([False, ])
+#             from_images=tune.grid_search([False,]),
+            from_images=tune.grid_search([True,]),
+            fix_goals=tune.grid_search([False, ]),
         ),
         train_config=dict(
             num_timesteps=tune.grid_search([20_000,]),
