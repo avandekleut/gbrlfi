@@ -33,7 +33,7 @@ class KinovaRobotEnv:
         self.base_cyclic = BaseCyclicClient(self.router)
         
 
-#         self.webcam = cv2.VideoCapture(0)
+        self.webcam = cv2.VideoCapture(0)
         
         self.action_scale = action_scale
         self.target_range = target_range
@@ -65,14 +65,14 @@ class KinovaRobotEnv:
         self.connection.__exit__(None, None, None)
         
     def render(self, mode='human', width=84, height=84):
-        return np.zeros((width, height, 3))
-#         ret, frame = self.webcam.read()
-#         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-#         if mode == 'human':
-#             cv2.imshow('', frame)
-#         elif mode == 'rgb_array':
-#             frame = cv2.resize(frame, (width, height))
-#             return frame
+#         return np.zeros((width, height, 3))
+        ret, frame = self.webcam.read()
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        if mode == 'human':
+            cv2.imshow('', frame)
+        elif mode == 'rgb_array':
+            frame = cv2.resize(frame, (width, height))
+            return frame
         
     def sample_goal(self, target_range=None):
         if target_range is None:
