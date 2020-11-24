@@ -52,7 +52,6 @@ class DeterministicWrapper(gym.Wrapper):
         self.action_space.seed(seed)
 
 class LatentDistanceRewardEnv(gym.Wrapper):
-#     def __init__(self, env, agent):
     def __init__(self, env):
         super(LatentDistanceRewardEnv, self).__init__(env)
         self.encoder = None
@@ -77,7 +76,6 @@ class LatentDistanceRewardEnv(gym.Wrapper):
             observation = torch.as_tensor(observation, device=self.device).unsqueeze(0)
             latent = self.encoder.forward_single_observation(observation)
             latent = latent.cpu().detach().numpy()
-#             latent /= np.linalg.norm(latent)
         return latent
     
     def compute_reward(self, achieved_goal, desired_goal, info):
@@ -85,7 +83,6 @@ class LatentDistanceRewardEnv(gym.Wrapper):
         latent_achieved_goal = self._to_latent(achieved_goal)
         latent_desired_goal = self._to_latent(desired_goal)
         reward = -np.linalg.norm(latent_achieved_goal - latent_desired_goal)
-#         assert -2. <= reward <= 0.
         return reward
 
 class FixedGoalEnv(gym.Wrapper):
@@ -136,7 +133,7 @@ class KinovaImageEnv(gym.Wrapper):
         goal = obs_dict['desired_goal']
         self.unwrapped._set_to(goal);
         self.goal_img = self.env.render(mode='rgb_array', width=self.width, height=self.height).T.copy()
-        self.unwrapped._set_to(initial_state)
+        self.unwrapped._set_to(initial_state) # NOT "reset()" since we 
         
         obs_dict = self._update_obs_dict(obs_dict)
         

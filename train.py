@@ -1,4 +1,5 @@
 import os
+import glob
 import random
 import copy
 
@@ -18,8 +19,13 @@ import torch
 
 from ray import tune
 
-import kinova
-kinova.register_env()
+try:
+    import kinova
+    kinova.register_env()
+except:
+    print('Kinova not found.')
+
+import pickle
 
 class Experiment(object):
     def __init__(
@@ -28,7 +34,6 @@ class Experiment(object):
             env_id,
         
             # visual?
-#             from_images=True,
             from_images=False,
 
             # reproducibility
@@ -38,15 +43,14 @@ class Experiment(object):
             fix_goals=False,
 
             # compute
-#             device='cuda',
-            device='cpu',
+            device='cuda' if torch.cuda.is_available() else 'cpu',
 
             # replay buffer
             num_resampled_goals=1,
             capacity=1_000_000,
 
             # agent
-            feature_dim=32,
+            feature_dim=128,
             hidden_sizes=[512, 512, 512],
             log_std_bounds=[-10, 2],
             discount=0.95,
@@ -56,6 +60,20 @@ class Experiment(object):
             critic_tau=0.005,
             critic_target_update_frequency=2,
             batch_size=128,
+        
+            # evaluation
+            num_eval_episodes=5,
+            
+            # training
+            gradient_steps=1, # better for wall clock time. increase for better performance.
+            num_timesteps=20_000, # maximum time steps
+            num_seed_steps=1_000, # random actions to improve exploration
+            update_after=1_000, # when to start updating (off-policy still learns from seed steps)
+            eval_every=20, # episodic frequency for evaluation
+            save_every=5_000, # how often to save the experiment progress in time steps
+        
+            **kwargs, # lazily absorb extra args
+        
         ):
         self.observation_key = 'image_observation' if from_images else 'observation'
         self.achieved_goal_key = 'image_achieved_goal' if from_images else 'achieved_goal'
@@ -65,11 +83,16 @@ class Experiment(object):
         utils.set_seed_everywhere(seed)
 
 #         # Create env
-        self.env = gym.make(env_id)
-        if 'Kinova' in env_id:
-            self.env = wrappers.KinovaWrapper(self.env, seed, from_images, fix_goals)
+        self.env_id = env_id
+        self.seed = seed
+        self.from_images = from_images
+        self.fix_goals = fix_goals
+        
+        self.env = gym.make(self.env_id)
+        if 'Kinova' in self.env_id:
+            self.env = wrappers.KinovaWrapper(self.env, self.seed, self.from_images, self.fix_goals)
         else:
-            self.env = wrappers.MultiWrapper(self.env, seed, from_images, fix_goals)
+            self.env = wrappers.MultiWrapper(self.env, self.seed, self.from_images, self.fix_goals)
 
         # Create agent
         self.agent = Agent(
@@ -88,10 +111,8 @@ class Experiment(object):
         )
         
         # update env to use agent encoder for images if necessary
-        if from_images:
-#             self.env = wrappers.LatentDistanceRewardEnv(self.env, self.agent)
+        if self.from_images:
             self.env.set_agent(self.agent) # set the conv encoder for latent distance rewards
-#         self.env.seed(seed)
 
         # Create replay buffer
         self.replay_buffer = HindsightReplayBuffer(
@@ -105,18 +126,23 @@ class Experiment(object):
         )
 
         self.step = 0
-    
-    def eval(self,
-            num_eval_episodes=5,
-        ):
+        self.num_eval_episodes = num_eval_episodes
         
+        self.gradient_steps = gradient_steps
+        self.num_timesteps = num_timesteps
+        self.num_seed_steps = num_seed_steps
+        self.update_after = update_after
+        self.eval_every = eval_every
+        self.save_every = save_every
+    
+    def eval(self):
         average_episode_reward = 0
         average_episode_success = 0
         
         video_recorder = VideoRecorder()
         video_recorder.init()
         
-        for episode in range(num_eval_episodes):
+        for episode in range(self.num_eval_episodes):
             
             obs_dict = self.env.reset()
             obs = obs_dict[self.observation_key]
@@ -141,8 +167,8 @@ class Experiment(object):
                 
                 video_recorder.record(next_obs_dict)
             
-            average_episode_reward += episode_reward/num_eval_episodes
-            average_episode_success += float(info['is_success'])/num_eval_episodes
+            average_episode_reward += episode_reward/self.num_eval_episodes
+            average_episode_success += float(info['is_success'])/self.num_eval_episodes
             
         video_recorder.save(f'{self.step}.mp4')
         
@@ -152,19 +178,11 @@ class Experiment(object):
             timesteps_this_iter=0,
         )
         
-
     
-    def train(self,
-            gradient_steps=1, # better for wall clock time. increase for better performance.
-            num_timesteps=4_000_000, # maximum time steps
-            num_seed_steps=10_000, # random actions to improve exploration
-            update_after=1_000, # when to start updating (off-policy still learns from seed steps)
-            eval_every=10, # episodic frequency for evaluation
-        ):
-        
+    def train(self):
         episode = 0
         
-        while self.step < num_timesteps:
+        while self.step < self.num_timesteps:
             
             obs_dict = self.env.reset()
             obs = obs_dict[self.observation_key]
@@ -174,14 +192,14 @@ class Experiment(object):
             episode_step = 0
 
             while not done:
-                if self.step < num_seed_steps:
-                    print('random action')
+                if self.step % self.save_every == 0:
+                    self.save(f'checkpoints/{self.step}.tar')
+#                     self.load(f'checkpoints/{self.step}.tar')
+                    
+                if self.step < self.num_seed_steps:
                     action = self.env.action_space.sample()
                 else:
-                    print('policy action')
                     action = self.agent.act(obs, obs_g, sample=True)
-                    
-                print(f'obs: {obs}\nobs g: {obs_g}')
 
                 next_obs_dict, reward, done, info = self.env.step(action)
                 next_obs = next_obs_dict[self.observation_key]
@@ -196,8 +214,8 @@ class Experiment(object):
 
                 self.replay_buffer.add(obs, obs_g, achieved_goal, action, reward, next_obs, done, done_no_max)
                 
-                if self.step >= update_after:
-                    for gradient_step in range(gradient_steps):
+                if self.step >= self.update_after:
+                    for gradient_step in range(self.gradient_steps):
                         self.agent.update(self.replay_buffer, gradient_step)
 
                 obs = next_obs_dict[self.observation_key]
@@ -212,12 +230,45 @@ class Experiment(object):
                 **self.agent.info,
             )
 
-            if episode % eval_every == 0:
+            if episode % self.eval_every == 0:
                 self.eval()
             episode += 1
 
-                
-
-        
         # one final test
         self.eval()
+        
+    def save(self, path):
+        dirs = os.path.dirname(path)
+        if not os.path.exists(dirs):
+            os.makedirs(dirs)
+#         with open(path, 'wb+') as f:
+#             pickle.dump(self, f)
+        
+    def load(self, path):
+        print(f'Resuming from {path}')
+        with open(path, 'rb') as f:
+            saved = pickle.load(f)
+            self.__dict__.update(saved.__dict__)
+            
+            # envs don't save correctly via pickle so re-make it.
+            self.env = gym.make(self.env_id)
+            if 'Kinova' in self.env_id:
+                self.env = wrappers.KinovaWrapper(self.env, self.seed, self.from_images, self.fix_goals)
+            else:
+                self.env = wrappers.MultiWrapper(self.env, self.seed, self.from_images, self.fix_goals)
+        
+            # update env to use agent encoder for images if necessary
+            if self.from_images:
+                self.env.set_agent(self.agent) # set the conv encoder for latent distance rewards
+
+            
+#     def load_most_recent(self):
+#         """
+#         Locate and load most recent checkpoint
+#         """
+#         list_of_files = glob.glob('checkpoints/*')
+#         if len(list_of_files) > 0:
+#             latest_file = max(list_of_files, key=os.path.getctime)
+#             self.load(latest_file)
+#         else:
+#             print('No recent checkpoints.')
