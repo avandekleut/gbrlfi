@@ -58,7 +58,8 @@ class LatentDistanceRewardEnv(gym.Wrapper):
         self.device = None
         
     def set_agent(self, agent):
-        self.encoder = agent.critic_target.encoder
+#         self.encoder = agent.critic_target.encoder
+        self.encoder = copy.deepcopy(agent.critic_target.encoder)
         self.device = agent.device
         
     def step(self, action):

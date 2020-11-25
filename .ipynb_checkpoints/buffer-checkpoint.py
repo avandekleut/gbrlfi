@@ -63,6 +63,7 @@ class ReplayBuffer(object):
 
 class HindsightReplayBuffer(ReplayBuffer):
     """Buffer to store environment transitions. Samples HER goals online."""
+    """Actually recomputes the reward always."""
     def __init__(self, from_images, env, num_resampled_goals, observation_space, action_space, capacity, device):
         super(HindsightReplayBuffer, self).__init__(from_images, observation_space, action_space, capacity, device)
         self.env = env
@@ -100,15 +101,15 @@ class HindsightReplayBuffer(ReplayBuffer):
             if np.random.rand() < self.her_ratio:
                 # original goal
                 desired_goal = self.desired_goals[transition]
-                reward = self.rewards[transition]
+#                 reward = self.rewards[transition]
             else:
                 # resampled goal
 
                 # choose a transition some time between the sampled one and the end of the episode
                 future_transition = np.random.randint(transition+1, batch_end)
                 desired_goal = self.achieved_goals[future_transition]
-                achieved_goal = self.achieved_goals[transition+1] # its the next timestep's achieved goal
-                reward = self.env.compute_reward(achieved_goal, desired_goal, dict())
+            achieved_goal = self.achieved_goals[transition+1] # its the next timestep's achieved goal
+            reward = self.env.compute_reward(achieved_goal, desired_goal, dict())
             idxs[i] = transition
             desired_goals[i] = desired_goal
             rewards[i] = reward

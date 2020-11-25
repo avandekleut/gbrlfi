@@ -1243,8 +1243,8 @@
   ],
   "runner_data": {
     "_global_time_limit": Infinity,
-    "_total_time": 14181.501928329468,
-    "_iteration": 2285,
+    "_total_time": 14676.084438323975,
+    "_iteration": 2398,
     "_has_errored": false,
     "_fail_fast": false,
     "_verbose": true,
@@ -1259,7 +1259,7 @@
     },
     "_resumed": false,
     "_start_time": 1606254537.001676,
-    "_last_checkpoint_time": 1606256316.3493736,
+    "_last_checkpoint_time": 1606256380.1366708,
     "_checkpoint_period": 10,
     "_session_str": "2020-11-24_13-48-57",
     "checkpoint_file": "/home/avandekleut/gbrlfi_old/logs/num_resampled_goals_1/experiment_state-2020-11-24_13-48-57.json",
@@ -1267,6 +1267,6 @@
   },
   "stats": {
     "start_time": 1606254537.001676,
-    "timestamp": 1606256316.3493736
+    "timestamp": 1606256380.1366708
   }
 }
