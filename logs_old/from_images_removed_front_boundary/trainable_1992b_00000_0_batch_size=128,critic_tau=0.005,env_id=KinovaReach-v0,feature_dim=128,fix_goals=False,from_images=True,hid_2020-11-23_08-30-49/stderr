@@ -1,0 +1,70 @@
+/home/avandekl/miniconda3/lib/python3.8/site-packages/torch/cuda/__init__.py:52: UserWarning: CUDA initialization: Found no NVIDIA driver on your system. Please check that you have an NVIDIA GPU and installed a driver from http://www.nvidia.com/Download/index.aspx (Triggered internally at  /pytorch/c10/cuda/CUDAFunctions.cpp:100.)
+  return torch._C._cuda_getDeviceCount() > 0
+[ERROR 2020-11-23 11:33:37,065] function_runner.py: 254  Runner Thread raised error.
+Traceback (most recent call last):
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 248, in run
+    self._entrypoint()
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 315, in entrypoint
+    return self._trainable_func(self.config, self._status_reporter,
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 575, in _trainable_func
+    output = fn()
+  File "run.py", line 7, in trainable
+    train.Experiment(**config['experiment_config']).train(**config['train_config'])
+  File "/home/avandekl/Documents/thesis/train.py", line 186, in train
+    next_obs_dict, reward, done, info = self.env.step(action)
+  File "/home/avandekl/Documents/thesis/wrappers.py", line 67, in step
+    obs_dict, reward, done, info = self.env.step(action)
+  File "/home/avandekl/Documents/thesis/wrappers.py", line 238, in step
+    obs, reward, done, info = self.env.step(action)
+  File "/home/avandekl/Documents/thesis/wrappers.py", line 159, in step
+    obs_dict, rew, done, info = self.env.step(act)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/gym/core.py", line 234, in step
+    return self.env.step(action)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/gym/wrappers/time_limit.py", line 16, in step
+    observation, reward, done, info = self.env.step(action)
+  File "/home/avandekl/Documents/thesis/kinova.py", line 108, in step
+    self.base.ExecuteAction(action)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/kortex_api/autogen/client_stubs/BaseClientRpc.py", line 679, in ExecuteAction
+    result = future.result(options.getTimeoutInSecond())
+  File "/home/avandekl/miniconda3/lib/python3.8/concurrent/futures/_base.py", line 439, in result
+    return self.__get_result()
+  File "/home/avandekl/miniconda3/lib/python3.8/concurrent/futures/_base.py", line 388, in __get_result
+    raise self._exception
+kortex_api.Exceptions.KServerException.KServerException: Server error name=ERROR_DEVICE, sub name=SESSION_NOT_IN_CONTROL => Failed to execute action: Session not in control 
+
+Exception in thread Thread-2:
+Traceback (most recent call last):
+  File "/home/avandekl/miniconda3/lib/python3.8/threading.py", line 932, in _bootstrap_inner
+    self.run()
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 267, in run
+    raise e
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 248, in run
+    self._entrypoint()
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 315, in entrypoint
+    return self._trainable_func(self.config, self._status_reporter,
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/ray/tune/function_runner.py", line 575, in _trainable_func
+    output = fn()
+  File "run.py", line 7, in trainable
+    train.Experiment(**config['experiment_config']).train(**config['train_config'])
+  File "/home/avandekl/Documents/thesis/train.py", line 186, in train
+    next_obs_dict, reward, done, info = self.env.step(action)
+  File "/home/avandekl/Documents/thesis/wrappers.py", line 67, in step
+    obs_dict, reward, done, info = self.env.step(action)
+  File "/home/avandekl/Documents/thesis/wrappers.py", line 238, in step
+    obs, reward, done, info = self.env.step(action)
+  File "/home/avandekl/Documents/thesis/wrappers.py", line 159, in step
+    obs_dict, rew, done, info = self.env.step(act)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/gym/core.py", line 234, in step
+    return self.env.step(action)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/gym/wrappers/time_limit.py", line 16, in step
+    observation, reward, done, info = self.env.step(action)
+  File "/home/avandekl/Documents/thesis/kinova.py", line 108, in step
+    self.base.ExecuteAction(action)
+  File "/home/avandekl/miniconda3/lib/python3.8/site-packages/kortex_api/autogen/client_stubs/BaseClientRpc.py", line 679, in ExecuteAction
+    result = future.result(options.getTimeoutInSecond())
+  File "/home/avandekl/miniconda3/lib/python3.8/concurrent/futures/_base.py", line 439, in result
+    return self.__get_result()
+  File "/home/avandekl/miniconda3/lib/python3.8/concurrent/futures/_base.py", line 388, in __get_result
+    raise self._exception
+kortex_api.Exceptions.KServerException.KServerException: Server error name=ERROR_DEVICE, sub name=SESSION_NOT_IN_CONTROL => Failed to execute action: Session not in control 
+

@@ -1,0 +1,823 @@
+{
+  "checkpoints": [
+    {
+      "trainable_name": "trainable",
+      "trial_id": "1992b_00000",
+      "config": {
+        "experiment_config": {
+          "env_id": "KinovaReach-v0",
+          "seed": 1,
+          "num_resampled_goals": 4,
+          "feature_dim": 128,
+          "lr": 0.0006,
+          "critic_tau": 0.005,
+          "batch_size": 128,
+          "hidden_sizes": [
+            512,
+            512,
+            512
+          ],
+          "from_images": true,
+          "fix_goals": false
+        },
+        "train_config": {
+          "num_timesteps": 20000,
+          "num_seed_steps": 1000,
+          "update_after": 1000,
+          "eval_every": 10,
+          "gradient_steps": 1
+        }
+      },
+      "local_dir": "/home/avandekl/Documents/thesis/logs/from_images_removed_front_boundary",
+      "evaluated_params": {
+        "experiment_config/batch_size": 128,
+        "experiment_config/critic_tau": 0.005,
+        "experiment_config/env_id": "KinovaReach-v0",
+        "experiment_config/feature_dim": 128,
+        "experiment_config/fix_goals": false,
+        "experiment_config/from_images": true,
+        "experiment_config/hidden_sizes": [
+          512,
+          512,
+          512
+        ],
+        "experiment_config/lr": 0.0006,
+        "experiment_config/num_resampled_goals": 4,
+        "experiment_config/seed": 1,
+        "train_config/eval_every": 10,
+        "train_config/gradient_steps": 1,
+        "train_config/num_seed_steps": 1000,
+        "train_config/num_timesteps": 20000,
+        "train_config/update_after": 1000
+      },
+      "experiment_tag": "0_batch_size=128,critic_tau=0.005,env_id=KinovaReach-v0,feature_dim=128,fix_goals=False,from_images=True,hidden_sizes=[512, 512, 512],lr=0.0006,num_resampled_goals=4,seed=1,eval_every=10,gradient_steps=1,num_seed_steps=1000,num_timesteps=20000,update_after=1000",
+      "location": {
+        "_type": "CLOUDPICKLE_FALLBACK",
+        "value": "8005953a000000000000008c0e7261792e74756e652e747269616c948c084c6f636174696f6e9493942981947d94288c08686f73746e616d65944e8c03706964944e75622e"
+      },
+      "resources": {
+        "cpu": 1,
+        "gpu": 0,
+        "memory": 0,
+        "object_store_memory": 0,
+        "extra_cpu": 0,
+        "extra_gpu": 0,
+        "extra_memory": 0,
+        "extra_object_store_memory": 0,
+        "custom_resources": {},
+        "extra_custom_resources": {}
+      },
+      "stopping_criterion": {},
+      "loggers": "80054e2e",
+      "log_to_file": [
+        "stdout",
+        "stderr"
+      ],
+      "sync_to_driver_fn": "80054e2e",
+      "verbose": true,
+      "max_failures": 0,
+      "last_result": {
+        "train_reward": -0.16537949978373945,
+        "train_is_success": 0.0,
+        "timesteps_this_iter": 50,
+        "critic_loss": 0.034577470272779465,
+        "actor_loss": -0.07999594509601593,
+        "entropy": 2.0184786319732666,
+        "alpha_loss": 0.29821667075157166,
+        "alpha": 0.05939520455707135,
+        "actor_Q": -0.03994956612586975,
+        "time_this_iter_s": 382.9058663845062,
+        "done": false,
+        "timesteps_total": 1981,
+        "episodes_total": null,
+        "training_iteration": 52,
+        "experiment_id": "c38c053a1f264860b5f9ae6b175a6fe5",
+        "date": "2020-11-23_11-31-04",
+        "timestamp": 1606149064,
+        "time_total_s": 10813.218628406525,
+        "pid": 12870,
+        "hostname": "scspcxxx",
+        "node_ip": "10.32.116.100",
+        "config": {
+          "experiment_config": {
+            "env_id": "KinovaReach-v0",
+            "seed": 1,
+            "num_resampled_goals": 4,
+            "feature_dim": 128,
+            "lr": 0.0006,
+            "critic_tau": 0.005,
+            "batch_size": 128,
+            "hidden_sizes": [
+              512,
+              512,
+              512
+            ],
+            "from_images": true,
+            "fix_goals": false
+          },
+          "train_config": {
+            "num_timesteps": 20000,
+            "num_seed_steps": 1000,
+            "update_after": 1000,
+            "eval_every": 10,
+            "gradient_steps": 1
+          }
+        },
+        "time_since_restore": 10813.218628406525,
+        "timesteps_since_restore": 1981,
+        "iterations_since_restore": 52,
+        "trial_id": "1992b_00000",
+        "experiment_tag": "0_batch_size=128,critic_tau=0.005,env_id=KinovaReach-v0,feature_dim=128,fix_goals=False,from_images=True,hidden_sizes=[512, 512, 512],lr=0.0006,num_resampled_goals=4,seed=1,eval_every=10,gradient_steps=1,num_seed_steps=1000,num_timesteps=20000,update_after=1000"
+      },
+      "last_update_time": 1606149064.8829422,
+      "metric_analysis": {
+        "train_reward": {
+          "max": -0.01079200068488717,
+          "min": -32.67663013935089,
+          "avg": -10.61564797166118,
+          "last": -0.16537949978373945,
+          "last-5-avg": -0.15648161640274338,
+          "last-10-avg": -0.14550609533616807
+        },
+        "train_is_success": {
+          "max": 1.0,
+          "min": 0.0,
+          "avg": 0.2264454499748616,
+          "last": 0.0,
+          "last-5-avg": 0.0,
+          "last-10-avg": 0.1
+        },
+        "timesteps_this_iter": {
+          "max": 50,
+          "min": 0,
+          "avg": 38.09615384615385,
+          "last": 50,
+          "last-5-avg": 50.0,
+          "last-10-avg": 41.5
+        },
+        "time_this_iter_s": {
+          "max": 447.0051317214966,
+          "min": 18.026512384414673,
+          "avg": 207.9465120847408,
+          "last": 382.9058663845062,
+          "last-5-avg": 365.08321328163146,
+          "last-10-avg": 343.16603195667267
+        },
+        "done": {
+          "max": false,
+          "min": false,
+          "avg": 0.0,
+          "last": false,
+          "last-5-avg": 0.0,
+          "last-10-avg": 0.0
+        },
+        "timesteps_total": {
+          "max": 1981,
+          "min": 50,
+          "avg": 997.6923076923075,
+          "last": 1981,
+          "last-5-avg": 1881.0,
+          "last-10-avg": 1778.0
+        },
+        "training_iteration": {
+          "max": 52,
+          "min": 1,
+          "avg": 26.499999999999996,
+          "last": 52,
+          "last-5-avg": 50.0,
+          "last-10-avg": 47.5
+        },
+        "timestamp": {
+          "max": 1606149064,
+          "min": 1606138362,
+          "avg": 1606142360.8846147,
+          "last": 1606149064,
+          "last-5-avg": 1606148318.2,
+          "last-10-avg": 1606147456.1
+        },
+        "time_total_s": {
+          "max": 10813.218628406525,
+          "min": 110.78478384017944,
+          "avg": 4109.75130128402,
+          "last": 10813.218628406525,
+          "last-5-avg": 10067.256271266937,
+          "last-10-avg": 9205.05824110508
+        },
+        "pid": {
+          "max": 12870,
+          "min": 12870,
+          "avg": 12869.999999999998,
+          "last": 12870,
+          "last-5-avg": 12870.0,
+          "last-10-avg": 12870.0
+        },
+        "time_since_restore": {
+          "max": 10813.218628406525,
+          "min": 110.78478384017944,
+          "avg": 4109.75130128402,
+          "last": 10813.218628406525,
+          "last-5-avg": 10067.256271266937,
+          "last-10-avg": 9205.05824110508
+        },
+        "timesteps_since_restore": {
+          "max": 1981,
+          "min": 50,
+          "avg": 997.6923076923075,
+          "last": 1981,
+          "last-5-avg": 1881.0,
+          "last-10-avg": 1778.0
+        },
+        "iterations_since_restore": {
+          "max": 52,
+          "min": 1,
+          "avg": 26.499999999999996,
+          "last": 52,
+          "last-5-avg": 50.0,
+          "last-10-avg": 47.5
+        },
+        "config/experiment_config/seed": {
+          "max": 1,
+          "min": 1,
+          "avg": 0.9999999999999999,
+          "last": 1,
+          "last-5-avg": 1.0,
+          "last-10-avg": 1.0
+        },
+        "config/experiment_config/num_resampled_goals": {
+          "max": 4,
+          "min": 4,
+          "avg": 3.9999999999999996,
+          "last": 4,
+          "last-5-avg": 4.0,
+          "last-10-avg": 4.0
+        },
+        "config/experiment_config/feature_dim": {
+          "max": 128,
+          "min": 128,
+          "avg": 127.99999999999999,
+          "last": 128,
+          "last-5-avg": 128.0,
+          "last-10-avg": 128.0
+        },
+        "config/experiment_config/lr": {
+          "max": 0.0006,
+          "min": 0.0006,
+          "avg": 0.0005999999999999998,
+          "last": 0.0006,
+          "last-5-avg": 0.0006,
+          "last-10-avg": 0.0006
+        },
+        "config/experiment_config/critic_tau": {
+          "max": 0.005,
+          "min": 0.005,
+          "avg": 0.005000000000000002,
+          "last": 0.005,
+          "last-5-avg": 0.005,
+          "last-10-avg": 0.004999999999999999
+        },
+        "config/experiment_config/batch_size": {
+          "max": 128,
+          "min": 128,
+          "avg": 127.99999999999999,
+          "last": 128,
+          "last-5-avg": 128.0,
+          "last-10-avg": 128.0
+        },
+        "config/experiment_config/from_images": {
+          "max": true,
+          "min": true,
+          "avg": 0.9999999999999999,
+          "last": true,
+          "last-5-avg": 1.0,
+          "last-10-avg": 1.0
+        },
+        "config/experiment_config/fix_goals": {
+          "max": false,
+          "min": false,
+          "avg": 0.0,
+          "last": false,
+          "last-5-avg": 0.0,
+          "last-10-avg": 0.0
+        },
+        "config/train_config/num_timesteps": {
+          "max": 20000,
+          "min": 20000,
+          "avg": 20000.0,
+          "last": 20000,
+          "last-5-avg": 20000.0,
+          "last-10-avg": 20000.0
+        },
+        "config/train_config/num_seed_steps": {
+          "max": 1000,
+          "min": 1000,
+          "avg": 999.9999999999999,
+          "last": 1000,
+          "last-5-avg": 1000.0,
+          "last-10-avg": 1000.0
+        },
+        "config/train_config/update_after": {
+          "max": 1000,
+          "min": 1000,
+          "avg": 999.9999999999999,
+          "last": 1000,
+          "last-5-avg": 1000.0,
+          "last-10-avg": 1000.0
+        },
+        "config/train_config/eval_every": {
+          "max": 10,
+          "min": 10,
+          "avg": 10.0,
+          "last": 10,
+          "last-5-avg": 10.0,
+          "last-10-avg": 10.0
+        },
+        "config/train_config/gradient_steps": {
+          "max": 1,
+          "min": 1,
+          "avg": 0.9999999999999999,
+          "last": 1,
+          "last-5-avg": 1.0,
+          "last-10-avg": 1.0
+        },
+        "eval_reward": {
+          "max": -0.13891557303722948,
+          "min": -13.356818370521069,
+          "avg": -12.492641279003198,
+          "last": -0.13891557303722948,
+          "last-5-avg": -7.368604295607658,
+          "last-10-avg": -7.368604295607658
+        },
+        "eval_is_success": {
+          "max": 0.2,
+          "min": 0.0,
+          "avg": 0.004347826086956522,
+          "last": 0.2,
+          "last-5-avg": 0.04,
+          "last-10-avg": 0.04
+        },
+        "critic_loss": {
+          "max": 0.06551890075206757,
+          "min": 0.016056720167398453,
+          "avg": 0.05119483261558806,
+          "last": 0.034577470272779465,
+          "last-5-avg": 0.02998868450522423,
+          "last-10-avg": 0.02952340915799141
+        },
+        "actor_loss": {
+          "max": 0.0674210786819458,
+          "min": -0.12858489155769348,
+          "avg": -0.010304287826673291,
+          "last": -0.07999594509601593,
+          "last-5-avg": -0.08865289092063904,
+          "last-10-avg": -0.09212253987789154
+        },
+        "entropy": {
+          "max": 2.0956966876983643,
+          "min": 0.861698567867279,
+          "avg": 1.3923472162780002,
+          "last": 2.0184786319732666,
+          "last-5-avg": 2.051535987854004,
+          "last-10-avg": 2.034418213367462
+        },
+        "alpha_loss": {
+          "max": 0.49462807178497314,
+          "min": 0.29821667075157166,
+          "avg": 0.3862054361649468,
+          "last": 0.29821667075157166,
+          "last-5-avg": 0.31534808278083803,
+          "last-10-avg": 0.33321076035499575
+        },
+        "alpha": {
+          "max": 0.09997932939318196,
+          "min": 0.05939520455707135,
+          "avg": 0.0894218862530671,
+          "last": 0.05939520455707135,
+          "last-5-avg": 0.06238917108711817,
+          "last-10-avg": 0.06616114341924136
+        },
+        "actor_Q": {
+          "max": -0.03581680729985237,
+          "min": -0.15360969305038452,
+          "avg": -0.10750944089086412,
+          "last": -0.03994956612586975,
+          "last-5-avg": -0.039436161518096924,
+          "last-10-avg": -0.04250522665679455
+        }
+      },
+      "n_steps": [
+        5,
+        10
+      ],
+      "metric_n_steps": {
+        "train_reward": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "800595d8000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294288c156e756d70792e636f72652e6d756c74696172726179948c067363616c61729493948c056e756d7079948c0564747970659493948c026638944b004b0187945294284b038c013c944e4e4e4affffffff4affffffff4b0074946243080000c03dc154c3bf94869452946807680d430800008081f00bc2bf94869452946807680d4308000070aa3f67c3bf94869452946807680d43080000007dd932c6bf94869452946807680d4308000080cb272bc5bf9486945294652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059537010000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294288c156e756d70792e636f72652e6d756c74696172726179948c067363616c61729493948c056e756d7079948c0564747970659493948c026638944b004b0187945294284b038c013c944e4e4e4affffffff4affffffff4b007494624308000000ea48f6c2bf94869452946807680d4308000040f6635fc4bf94869452946807680d43080000003e96b6c4bf94869452946807680d43080000000637e9a6bf94869452946807680d430800004062ec52c4bf94869452946807680d43080000c03dc154c3bf94869452946807680d430800008081f00bc2bf94869452946807680d4308000070aa3f67c3bf94869452946807680d43080000007dd932c6bf94869452946807680d4308000080cb272bc5bf9486945294652e"
+          }
+        },
+        "train_is_success": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b058694529428470000000000000000470000000000000000470000000000000000470000000000000000470000000000000000652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005957c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a8694529428470000000000000000470000000000000000470000000000000000473ff0000000000000470000000000000000470000000000000000470000000000000000470000000000000000470000000000000000470000000000000000652e"
+          }
+        },
+        "timesteps_this_iter": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005952c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284b324b324b324b324b32652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059536000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284b324b324b0f4b004b324b324b324b324b324b32652e"
+          }
+        },
+        "time_this_iter_s": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b058694529428474074ab6dc5000000474079067616c0000047407506447e00000047407770016dc00000474077ee7e6dc00000652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005957c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284740757b5c284000004740795845a940000047405dcb1eb3000000474077286d88400000474076f5116f800000474074ab6dc5000000474079067616c0000047407506447e00000047407770016dc00000474077ee7e6dc00000652e"
+          }
+        },
+        "done": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059527000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294288989898989652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005952c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a869452942889898989898989898989652e"
+          }
+        },
+        "timesteps_total": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059531000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284df5064d27074d59074d8b074dbd07652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059540000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284d50064d82064d91064d91064dc3064df5064d27074d59074d8b074dbd07652e"
+          }
+        },
+        "training_iteration": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005952c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284b304b314b324b334b34652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059536000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284b2b4b2c4b2d4b2e4b2f4b304b314b324b334b34652e"
+          }
+        },
+        "timestamp": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005953b000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284af2ddbb5f4a82dfbb5f4ad2e0bb5f4a49e2bb5f4ac8e3bb5f652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059554000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284ab8d7bb5f4a4ed9bb5f4ac5d9bb5f4a38dbbb5f4aa7dcbb5f4af2ddbb5f4a82dfbb5f4ad2e0bb5f4a49e2bb5f4ac8e3bb5f652e"
+          }
+        },
+        "time_total_s": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284740c23342288200004740c2fb75d93800004740c3a3a7fd2800004740c45f28089600004740c51e9bfc040000652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005957c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284740be2d44afd800004740bfc2c90a6c00004740c01cfac29c00004740c0d63e2ede00004740c18de6ba5a00004740c23342288200004740c2fb75d93800004740c3a3a7fd2800004740c45f28089600004740c51e9bfc040000652e"
+          }
+        },
+        "pid": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059531000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284d46324d46324d46324d46324d4632652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059540000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284d46324d46324d46324d46324d46324d46324d46324d46324d46324d4632652e"
+          }
+        },
+        "time_since_restore": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284740c23342288200004740c2fb75d93800004740c3a3a7fd2800004740c45f28089600004740c51e9bfc040000652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005957c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284740be2d44afd800004740bfc2c90a6c00004740c01cfac29c00004740c0d63e2ede00004740c18de6ba5a00004740c23342288200004740c2fb75d93800004740c3a3a7fd2800004740c45f28089600004740c51e9bfc040000652e"
+          }
+        },
+        "timesteps_since_restore": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059531000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284df5064d27074d59074d8b074dbd07652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059540000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284d50064d82064d91064d91064dc3064df5064d27074d59074d8b074dbd07652e"
+          }
+        },
+        "iterations_since_restore": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005952c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284b304b314b324b334b34652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059536000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284b2b4b2c4b2d4b2e4b2f4b304b314b324b334b34652e"
+          }
+        },
+        "config/experiment_config/seed": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005952c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284b014b014b014b014b01652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059536000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284b014b014b014b014b014b014b014b014b014b01652e"
+          }
+        },
+        "config/experiment_config/num_resampled_goals": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005952c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284b044b044b044b044b04652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059536000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284b044b044b044b044b044b044b044b044b044b04652e"
+          }
+        },
+        "config/experiment_config/feature_dim": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005952c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284b804b804b804b804b80652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059536000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284b804b804b804b804b804b804b804b804b804b80652e"
+          }
+        },
+        "config/experiment_config/lr": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b058694529428473f43a92a30553261473f43a92a30553261473f43a92a30553261473f43a92a30553261473f43a92a30553261652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005957c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a8694529428473f43a92a30553261473f43a92a30553261473f43a92a30553261473f43a92a30553261473f43a92a30553261473f43a92a30553261473f43a92a30553261473f43a92a30553261473f43a92a30553261473f43a92a30553261652e"
+          }
+        },
+        "config/experiment_config/critic_tau": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b058694529428473f747ae147ae147b473f747ae147ae147b473f747ae147ae147b473f747ae147ae147b473f747ae147ae147b652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005957c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a8694529428473f747ae147ae147b473f747ae147ae147b473f747ae147ae147b473f747ae147ae147b473f747ae147ae147b473f747ae147ae147b473f747ae147ae147b473f747ae147ae147b473f747ae147ae147b473f747ae147ae147b652e"
+          }
+        },
+        "config/experiment_config/batch_size": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005952c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284b804b804b804b804b80652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059536000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284b804b804b804b804b804b804b804b804b804b80652e"
+          }
+        },
+        "config/experiment_config/from_images": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059527000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294288888888888652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005952c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a869452942888888888888888888888652e"
+          }
+        },
+        "config/experiment_config/fix_goals": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059527000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294288989898989652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005952c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a869452942889898989898989898989652e"
+          }
+        },
+        "config/train_config/num_timesteps": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059531000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284d204e4d204e4d204e4d204e4d204e652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059540000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284d204e4d204e4d204e4d204e4d204e4d204e4d204e4d204e4d204e4d204e652e"
+          }
+        },
+        "config/train_config/num_seed_steps": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059531000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284de8034de8034de8034de8034de803652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059540000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284de8034de8034de8034de8034de8034de8034de8034de8034de8034de803652e"
+          }
+        },
+        "config/train_config/update_after": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059531000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284de8034de8034de8034de8034de803652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059540000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284de8034de8034de8034de8034de8034de8034de8034de8034de8034de803652e"
+          }
+        },
+        "config/train_config/eval_every": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005952c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284b0a4b0a4b0a4b0a4b0a652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059536000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284b0a4b0a4b0a4b0a4b0a4b0a4b0a4b0a4b0a4b0a652e"
+          }
+        },
+        "config/train_config/gradient_steps": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005952c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284b014b014b014b014b01652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059536000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284b014b014b014b014b014b014b014b014b014b01652e"
+          }
+        },
+        "eval_reward": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "800595d8000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294288c156e756d70792e636f72652e6d756c74696172726179948c067363616c61729493948c056e756d7079948c0564747970659493948c026638944b004b0187945294284b038c013c944e4e4e4affffffff4affffffff4b0074946243080000c0e5b0b62ac094869452946807680d43083333d3c7cb3f26c094869452946807680d43089a99d99f761028c094869452946807680d4308ffff3f125163c8bf94869452946807680d4308cdcc8c49fcc7c1bf9486945294652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "800595d8000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294288c156e756d70792e636f72652e6d756c74696172726179948c067363616c61729493948c056e756d7079948c0564747970659493948c026638944b004b0187945294284b038c013c944e4e4e4affffffff4affffffff4b0074946243080000c0e5b0b62ac094869452946807680d43083333d3c7cb3f26c094869452946807680d43089a99d99f761028c094869452946807680d4308ffff3f125163c8bf94869452946807680d4308cdcc8c49fcc7c1bf9486945294652e"
+          }
+        },
+        "eval_is_success": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b058694529428470000000000000000470000000000000000470000000000000000470000000000000000473fc999999999999a652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a8694529428470000000000000000470000000000000000470000000000000000470000000000000000473fc999999999999a652e"
+          }
+        },
+        "critic_loss": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b058694529428473fa76a3e00000000473f90712c40000000473f9ed3e880000000473f9808ed40000000473fa1b42360000000652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005957c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a8694529428473f9ad1cc00000000473f942abd80000000473fa0656040000000473fa1afc880000000473fa0d01c60000000473fa76a3e00000000473f90712c40000000473f9ed3e880000000473f9808ed40000000473fa1b42360000000652e"
+          }
+        },
+        "actor_loss": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b05869452942847bfb79ceae000000047bfb7f610c000000047bfb6c8e3a000000047bfb6a34b0000000047bfb47a9d40000000652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005957c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a869452942847bfb8b6f60000000047bfbba3474000000047bfb6efc04000000047bfba52242000000047bfb4bf846000000047bfb79ceae000000047bfb7f610c000000047bfb6c8e3a000000047bfb6a34b0000000047bfb47a9d40000000652e"
+          }
+        },
+        "entropy": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284740008179200000004740008e6d80000000474000738040000000474000667b8000000047400025d820000000652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005957c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284740000c61800000004740002596c00000004740005b0fa00000004740008fea60000000473fff286ba00000004740008179200000004740008e6d80000000474000738040000000474000667b8000000047400025d820000000652e"
+          }
+        },
+        "alpha_loss": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b058694529428473fd53afd00000000473fd4bce0a0000000473fd42ee9c0000000473fd3ac8de0000000473fd315fb60000000652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005957c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a8694529428473fd76c7e20000000473fd6e0f920000000473fd66a1d40000000473fd65b6d20000000473fd544ee00000000473fd53afd00000000473fd4bce0a0000000473fd42ee9c0000000473fd3ac8de0000000473fd315fb60000000652e"
+          }
+        },
+        "alpha": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b058694529428473fb0c39063f23b9b473fb05ac6c51ecf79473fafeadcbbee26f7473faf26c696266b6d473fae690c5a39449d652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005957c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a8694529428473fb2b4e5302161ca473fb23a0814e04dab473fb1c3b3296dcf7b473fb1a0fa36b612d5473fb130144c2694f5473fb0c39063f23b9b473fb05ac6c51ecf79473fafeadcbbee26f7473faf26c696266b6d473fae690c5a39449d652e"
+          }
+        },
+        "actor_Q": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b05869452942847bfa5fbdc6000000047bfa3cdd9e000000047bfa418f72000000047bfa29defa000000047bfa4744500000000652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005957c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a869452942847bfa9a99de000000047bfa25694a000000047bfaacd3c8000000047bfa4636f4000000047bfa97ab32000000047bfa5fbdc6000000047bfa3cdd9e000000047bfa418f72000000047bfa29defa000000047bfa4744500000000652e"
+          }
+        }
+      },
+      "export_formats": [],
+      "status": "ERROR",
+      "start_time": 1606138249.34545,
+      "logdir": "/home/avandekl/Documents/thesis/logs/from_images_removed_front_boundary/trainable_1992b_00000_0_batch_size=128,critic_tau=0.005,env_id=KinovaReach-v0,feature_dim=128,fix_goals=False,from_images=True,hid_2020-11-23_08-30-49",
+      "runner": null,
+      "result_logger": null,
+      "last_debug": 1606149064.8829231,
+      "error_file": null,
+      "error_msg": null,
+      "trial_name_creator": null,
+      "custom_trial_name": null,
+      "custom_dirname": null,
+      "saving_to": null,
+      "remote_checkpoint_dir_prefix": null,
+      "checkpoint_freq": 0,
+      "checkpoint_at_end": false,
+      "keep_checkpoints_num": null,
+      "checkpoint_score_attr": "training_iteration",
+      "sync_on_checkpoint": true,
+      "checkpoint_manager": {
+        "_type": "CLOUDPICKLE_FALLBACK",
+        "value": "80059566010000000000008c1b7261792e74756e652e636865636b706f696e745f6d616e61676572948c11436865636b706f696e744d616e616765729493942981947d94288c146b6565705f636865636b706f696e74735f6e756d94477ff00000000000008c165f636865636b706f696e745f73636f72655f6465736394898c165f636865636b706f696e745f73636f72655f61747472948c12747261696e696e675f697465726174696f6e948c1c6e65776573745f70657273697374656e745f636865636b706f696e749468008c0a436865636b706f696e749493942981947d94288c0773746f72616765948c0a70657273697374656e74948c0576616c7565944e8c06726573756c74947d9475628c195f6e65776573745f6d656d6f72795f636865636b706f696e7494680b2981947d9428680e8c066d656d6f72799468104e68117d9475628c115f626573745f636865636b706f696e7473945d948c0b5f6d656d62657273686970948f9475622e"
+      },
+      "restore_path": null,
+      "restoring_from": null,
+      "num_failures": 0,
+      "results": "80054e2e",
+      "best_result": "80054e2e",
+      "param_config": "80054e2e",
+      "extra_arg": "80054e2e",
+      "_nonjson_fields": [
+        "loggers",
+        "sync_to_driver_fn",
+        "results",
+        "best_result",
+        "param_config",
+        "extra_arg"
+      ],
+      "resuming_from": null,
+      "__logger_started__": true
+    }
+  ],
+  "runner_data": {
+    "_metric": null,
+    "_total_time": 10813.218628406525,
+    "_iteration": 54,
+    "_has_errored": true,
+    "_fail_fast": false,
+    "_verbose": true,
+    "_server_port": null,
+    "_cached_trial_decisions": {},
+    "_should_stop_experiment": false,
+    "_local_checkpoint_dir": "/home/avandekl/Documents/thesis/logs/from_images_removed_front_boundary",
+    "_remote_checkpoint_dir": null,
+    "_stopper": {
+      "_type": "CLOUDPICKLE_FALLBACK",
+      "value": "80059527000000000000008c107261792e74756e652e73746f70706572948c0b4e6f6f7053746f707065729493942981942e"
+    },
+    "_resumed": false,
+    "_start_time": 1606138249.2525392,
+    "_last_checkpoint_time": 1606149217.202545,
+    "_checkpoint_period": 10,
+    "_session_str": "2020-11-23_08-30-49",
+    "checkpoint_file": "/home/avandekl/Documents/thesis/logs/from_images_removed_front_boundary/experiment_state-2020-11-23_08-30-49.json",
+    "launch_web_server": false
+  },
+  "stats": {
+    "start_time": 1606138249.2525392,
+    "timestamp": 1606149217.202545
+  }
+}
