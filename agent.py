@@ -4,6 +4,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 import utils
 import copy
+import pickle
+import os
 
 torch.set_default_dtype(torch.float32)
 class ConcatenationEncoder(nn.Module):
@@ -303,3 +305,18 @@ class Agent(object):
 
         if step % self.critic_target_update_frequency == 0:
             utils.soft_update_params(self.critic, self.critic_target, self.critic_tau)
+            
+    def save(self, filename, folder='checkpoints'):
+        pass
+#         if not os.path.exists(folder):
+#             os.mkdir(folder)
+#         with open(os.path.join(folder, filename), 'wb+') as f:
+#             pickle.dump(self, f)
+    
+    def load(self, filename, folder='checkpoints'):
+        pass
+#         if not os.path.exists(folder):
+#             os.mkdir(folder)
+#         with open(os.path.join(folder, filename), 'rb') as f:
+#             agent = pickle.load(f)
+#             self.__dict__.update(agent.__dict__)

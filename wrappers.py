@@ -225,7 +225,6 @@ class ImageEnv(gym.Wrapper):
         for _ in range(100):
             self.env.sim.step()
 
-    
 
 class DoneOnSuccessWrapper(gym.Wrapper):
     def __init__(self, env):

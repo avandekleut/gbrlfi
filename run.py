@@ -5,11 +5,12 @@ import sys
 import glob
 import argparse
 import torch
+import numpy as np
 
 def trainable(config, checkpoint_dir=None):
     experiment = train.Experiment(**config)
-    if config['checkpoint']:
-        experiment.load(config['checkpoint'])
+#     if config['checkpoint']:
+#         experiment.load(config['checkpoint'])
     experiment.train()
     
 if __name__ == "__main__": 
@@ -190,16 +191,48 @@ if __name__ == "__main__":
     # convert args namespace to a dictionary
     # replace the values of the dictionary like value -> tune.grid_search([value, ])
     # so that ray tune logs them.
-    config = {param: tune.grid_search([value, ]) for param, value in vars(args).items()}
+    
+#     config = {param: tune.grid_search([value, ]) for param, value in vars(args).items()}
+    
+    config = {
+        'env_id':tune.grid_search(['FetchPickAndPlace-v1']),
+        'fix_goals':tune.grid_search([False,]),
+        'num_resampled_goals':tune.grid_search([1]),
+        'hidden_sizes':tune.grid_search([
+            [512, 512],
+        ]),
+        'discount':tune.grid_search([
+            0.95,
+        ]),
+        'init_temperature':tune.grid_search([
+            1.,
+        ]),
+        'lr':tune.grid_search([0.0005, ]),
+        'actor_update_frequency':tune.grid_search([1,]),
+        'critic_tau':tune.grid_search([0.0005, ]),
+        'batch_size':tune.grid_search([1024]),
+        'gradient_steps':tune.grid_search([1,]),
+        'update_after':tune.grid_search([10_000]),
+        'num_seed_steps':tune.grid_search([10_000]),
+        'eval_every':tune.grid_search([100]),
+        'num_timesteps':tune.grid_search([4_000_000]),
+        
+        'seed':tune.grid_search(list(range(8))),
+
+        'save_every':np.inf
+    }
     
     tune.run(
         trainable,
         name=args.name,
         config=config,
-        num_samples=args.num_samples,
+#         num_samples=args.num_samples,
+        num_samples=1,
         resources_per_trial={
-            'cpu':args.cpu, 
-            'gpu':args.gpu,
+#             'cpu':args.cpu, 
+#             'gpu':args.gpu,
+            'cpu':1, 
+            'gpu':0.5,
         },
         local_dir=f'logs',
         log_to_file=True,

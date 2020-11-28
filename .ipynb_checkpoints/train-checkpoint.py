@@ -13,6 +13,8 @@ import time
 import sys
 from datetime import datetime
 
+import cv2
+
 import gym
 
 import torch
@@ -193,8 +195,7 @@ class Experiment(object):
 
             while not done:
                 if self.step % self.save_every == 0:
-                    self.save(f'checkpoints/{self.step}.tar')
-#                     self.load(f'checkpoints/{self.step}.tar')
+                    self.agent.save(f'agent.ckpt')
                     
                 if self.step < self.num_seed_steps:
                     action = self.env.action_space.sample()
@@ -236,39 +237,3 @@ class Experiment(object):
 
         # one final test
         self.eval()
-        
-    def save(self, path):
-        dirs = os.path.dirname(path)
-        if not os.path.exists(dirs):
-            os.makedirs(dirs)
-#         with open(path, 'wb+') as f:
-#             pickle.dump(self, f)
-        
-    def load(self, path):
-        print(f'Resuming from {path}')
-        with open(path, 'rb') as f:
-            saved = pickle.load(f)
-            self.__dict__.update(saved.__dict__)
-            
-            # envs don't save correctly via pickle so re-make it.
-            self.env = gym.make(self.env_id)
-            if 'Kinova' in self.env_id:
-                self.env = wrappers.KinovaWrapper(self.env, self.seed, self.from_images, self.fix_goals)
-            else:
-                self.env = wrappers.MultiWrapper(self.env, self.seed, self.from_images, self.fix_goals)
-        
-            # update env to use agent encoder for images if necessary
-            if self.from_images:
-                self.env.set_agent(self.agent) # set the conv encoder for latent distance rewards
-
-            
-#     def load_most_recent(self):
-#         """
-#         Locate and load most recent checkpoint
-#         """
-#         list_of_files = glob.glob('checkpoints/*')
-#         if len(list_of_files) > 0:
-#             latest_file = max(list_of_files, key=os.path.getctime)
-#             self.load(latest_file)
-#         else:
-#             print('No recent checkpoints.')

@@ -1,0 +1,22 @@
+{
+  "actor_update_frequency": 1,
+  "batch_size": 1024,
+  "critic_tau": 0.0005,
+  "discount": 0.95,
+  "env_id": "FetchPickAndPlace-v1",
+  "eval_every": 100,
+  "fix_goals": false,
+  "gradient_steps": 1,
+  "hidden_sizes": [
+    512,
+    512
+  ],
+  "init_temperature": 1.0,
+  "lr": 0.0005,
+  "num_resampled_goals": 1,
+  "num_seed_steps": 10000,
+  "num_timesteps": 4000000,
+  "save_every": Infinity,
+  "seed": 2,
+  "update_after": 10000
+}
