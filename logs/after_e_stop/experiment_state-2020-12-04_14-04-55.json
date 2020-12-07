@@ -1,0 +1,1046 @@
+{
+  "checkpoints": [
+    {
+      "trainable_name": "trainable",
+      "trial_id": "98b0d_00000",
+      "config": {
+        "env_id": "KinovaReach-v0",
+        "name": "after_e_stop",
+        "checkpoint": null,
+        "from_images": false,
+        "fix_goals": false,
+        "seed": 1,
+        "device": "cpu",
+        "num_resampled_goals": 1,
+        "capacity": 1000000,
+        "feature_dim": 128,
+        "hidden_sizes": [
+          512,
+          512,
+          512
+        ],
+        "log_std": [
+          -10,
+          2
+        ],
+        "discount": 0.95,
+        "init_temperature": 0.1,
+        "lr": 0.0006,
+        "actor_update_frequency": 2,
+        "critic_tau": 0.005,
+        "critic_target_update_frequency": 2,
+        "batch_size": 128,
+        "num_eval_episodes": 5,
+        "gradient_steps": 1,
+        "num_timesteps": 20000,
+        "num_seed_steps": 1000,
+        "update_after": 1000,
+        "eval_every": 20,
+        "save_every": 5000,
+        "num_samples": 1,
+        "cpu": 1,
+        "gpu": 0
+      },
+      "local_dir": "/home/avandekl/Documents/gbrlfi/logs/after_e_stop",
+      "evaluated_params": {
+        "actor_update_frequency": 2,
+        "batch_size": 128,
+        "capacity": 1000000,
+        "checkpoint": null,
+        "cpu": 1,
+        "critic_target_update_frequency": 2,
+        "critic_tau": 0.005,
+        "device": "cpu",
+        "discount": 0.95,
+        "env_id": "KinovaReach-v0",
+        "eval_every": 20,
+        "feature_dim": 128,
+        "fix_goals": false,
+        "from_images": false,
+        "gpu": 0,
+        "gradient_steps": 1,
+        "hidden_sizes": [
+          512,
+          512,
+          512
+        ],
+        "init_temperature": 0.1,
+        "log_std": [
+          -10,
+          2
+        ],
+        "lr": 0.0006,
+        "name": "after_e_stop",
+        "num_eval_episodes": 5,
+        "num_resampled_goals": 1,
+        "num_samples": 1,
+        "num_seed_steps": 1000,
+        "num_timesteps": 20000,
+        "save_every": 5000,
+        "seed": 1,
+        "update_after": 1000
+      },
+      "experiment_tag": "0_actor_update_frequency=2,batch_size=128,capacity=1000000,checkpoint=None,cpu=1,critic_target_update_frequency=2,critic_tau=0.005,device=cpu,discount=0.95,env_id=KinovaReach-v0,eval_every=20,feature_dim=128,fix_goals=False,from_images=False,gpu=0,gradient_steps=1,hidden_sizes=[512, 512, 512],init_temperature=0.1,log_std=[-10, 2],lr=0.0006,name=after_e_stop,num_eval_episodes=5,num_resampled_goals=1,num_samples=1,num_seed_steps=1000,num_timesteps=20000,save_every=5000,seed=1,update_after=1000",
+      "location": {
+        "_type": "CLOUDPICKLE_FALLBACK",
+        "value": "8005953a000000000000008c0e7261792e74756e652e747269616c948c084c6f636174696f6e9493942981947d94288c08686f73746e616d65944e8c03706964944e75622e"
+      },
+      "resources": {
+        "cpu": 1,
+        "gpu": 0,
+        "memory": 0,
+        "object_store_memory": 0,
+        "extra_cpu": 0,
+        "extra_gpu": 0,
+        "extra_memory": 0,
+        "extra_object_store_memory": 0,
+        "custom_resources": {},
+        "extra_custom_resources": {}
+      },
+      "stopping_criterion": {},
+      "loggers": "80054e2e",
+      "log_to_file": [
+        "stdout",
+        "stderr"
+      ],
+      "sync_to_driver_fn": "80054e2e",
+      "verbose": true,
+      "max_failures": 0,
+      "last_result": {
+        "train_reward": -3.0,
+        "train_is_success": 1.0,
+        "timesteps_this_iter": 4,
+        "critic_loss": 0.8843207359313965,
+        "actor_loss": 2.7381224632263184,
+        "entropy": -3.3615317344665527,
+        "alpha_loss": -0.014435186982154846,
+        "alpha": 0.0399310773236553,
+        "actor_Q": -2.6039037704467773,
+        "time_this_iter_s": 19.37611746788025,
+        "done": false,
+        "timesteps_total": 12916,
+        "episodes_total": null,
+        "training_iteration": 2182,
+        "experiment_id": "dd4ffe89602044d7908cce0e76caceff",
+        "date": "2020-12-05_04-59-21",
+        "timestamp": 1607162361,
+        "time_total_s": 53665.09698390961,
+        "pid": 19095,
+        "hostname": "scspcxxx",
+        "node_ip": "10.32.116.100",
+        "config": {
+          "env_id": "KinovaReach-v0",
+          "name": "after_e_stop",
+          "checkpoint": null,
+          "from_images": false,
+          "fix_goals": false,
+          "seed": 1,
+          "device": "cpu",
+          "num_resampled_goals": 1,
+          "capacity": 1000000,
+          "feature_dim": 128,
+          "hidden_sizes": [
+            512,
+            512,
+            512
+          ],
+          "log_std": [
+            -10,
+            2
+          ],
+          "discount": 0.95,
+          "init_temperature": 0.1,
+          "lr": 0.0006,
+          "actor_update_frequency": 2,
+          "critic_tau": 0.005,
+          "critic_target_update_frequency": 2,
+          "batch_size": 128,
+          "num_eval_episodes": 5,
+          "gradient_steps": 1,
+          "num_timesteps": 20000,
+          "num_seed_steps": 1000,
+          "update_after": 1000,
+          "eval_every": 20,
+          "save_every": 5000,
+          "num_samples": 1,
+          "cpu": 1,
+          "gpu": 0
+        },
+        "time_since_restore": 53665.09698390961,
+        "timesteps_since_restore": 12916,
+        "iterations_since_restore": 2182,
+        "trial_id": "98b0d_00000",
+        "experiment_tag": "0_actor_update_frequency=2,batch_size=128,capacity=1000000,checkpoint=None,cpu=1,critic_target_update_frequency=2,critic_tau=0.005,device=cpu,discount=0.95,env_id=KinovaReach-v0,eval_every=20,feature_dim=128,fix_goals=False,from_images=False,gpu=0,gradient_steps=1,hidden_sizes=[512, 512, 512],init_temperature=0.1,log_std=[-10, 2],lr=0.0006,name=after_e_stop,num_eval_episodes=5,num_resampled_goals=1,num_samples=1,num_seed_steps=1000,num_timesteps=20000,save_every=5000,seed=1,update_after=1000"
+      },
+      "last_update_time": 1607162361.631087,
+      "metric_analysis": {
+        "train_reward": {
+          "max": 0.0,
+          "min": -50.0,
+          "avg": -5.544080860611891,
+          "last": -3.0,
+          "last-5-avg": -1.4,
+          "last-10-avg": -1.2
+        },
+        "train_is_success": {
+          "max": 1.0,
+          "min": 0.0,
+          "avg": 0.9354189905528786,
+          "last": 1.0,
+          "last-5-avg": 1.0,
+          "last-10-avg": 1.0
+        },
+        "timesteps_this_iter": {
+          "max": 50,
+          "min": 0,
+          "avg": 5.9193400549953985,
+          "last": 4,
+          "last-5-avg": 2.4,
+          "last-10-avg": 2.2
+        },
+        "time_this_iter_s": {
+          "max": 332.6075713634491,
+          "min": 9.699800968170166,
+          "avg": 24.59445324652136,
+          "last": 19.37611746788025,
+          "last-5-avg": 14.811354112625121,
+          "last-10-avg": 14.44875202178955
+        },
+        "done": {
+          "max": false,
+          "min": false,
+          "avg": 0.0,
+          "last": false,
+          "last-5-avg": 0.0,
+          "last-10-avg": 0.0
+        },
+        "timesteps_total": {
+          "max": 12916,
+          "min": 50,
+          "avg": 7981.321723189728,
+          "last": 12916,
+          "last-5-avg": 12909.6,
+          "last-10-avg": 12904.9
+        },
+        "training_iteration": {
+          "max": 2182,
+          "min": 1,
+          "avg": 1091.500000000001,
+          "last": 2182,
+          "last-5-avg": 2180.0,
+          "last-10-avg": 2177.5
+        },
+        "timestamp": {
+          "max": 1607162361,
+          "min": 1607108807,
+          "avg": 1607138527.6402304,
+          "last": 1607162361,
+          "last-5-avg": 1607162327.0,
+          "last-10-avg": 1607162292.9
+        },
+        "time_total_s": {
+          "max": 53665.09698390961,
+          "min": 110.6192557811737,
+          "avg": 29831.611018427884,
+          "last": 53665.09698390961,
+          "last-5-avg": 53630.934828662874,
+          "last-10-avg": 53596.801399350166
+        },
+        "pid": {
+          "max": 19095,
+          "min": 19095,
+          "avg": 19095.000000000015,
+          "last": 19095,
+          "last-5-avg": 19095.0,
+          "last-10-avg": 19095.0
+        },
+        "time_since_restore": {
+          "max": 53665.09698390961,
+          "min": 110.6192557811737,
+          "avg": 29831.611018427884,
+          "last": 53665.09698390961,
+          "last-5-avg": 53630.934828662874,
+          "last-10-avg": 53596.801399350166
+        },
+        "timesteps_since_restore": {
+          "max": 12916,
+          "min": 50,
+          "avg": 7981.321723189728,
+          "last": 12916,
+          "last-5-avg": 12909.6,
+          "last-10-avg": 12904.9
+        },
+        "iterations_since_restore": {
+          "max": 2182,
+          "min": 1,
+          "avg": 1091.500000000001,
+          "last": 2182,
+          "last-5-avg": 2180.0,
+          "last-10-avg": 2177.5
+        },
+        "config/from_images": {
+          "max": false,
+          "min": false,
+          "avg": 0.0,
+          "last": false,
+          "last-5-avg": 0.0,
+          "last-10-avg": 0.0
+        },
+        "config/fix_goals": {
+          "max": false,
+          "min": false,
+          "avg": 0.0,
+          "last": false,
+          "last-5-avg": 0.0,
+          "last-10-avg": 0.0
+        },
+        "config/seed": {
+          "max": 1,
+          "min": 1,
+          "avg": 0.9999999999999886,
+          "last": 1,
+          "last-5-avg": 1.0,
+          "last-10-avg": 1.0
+        },
+        "config/num_resampled_goals": {
+          "max": 1,
+          "min": 1,
+          "avg": 0.9999999999999886,
+          "last": 1,
+          "last-5-avg": 1.0,
+          "last-10-avg": 1.0
+        },
+        "config/capacity": {
+          "max": 1000000,
+          "min": 1000000,
+          "avg": 999999.9999999898,
+          "last": 1000000,
+          "last-5-avg": 1000000.0,
+          "last-10-avg": 1000000.0
+        },
+        "config/feature_dim": {
+          "max": 128,
+          "min": 128,
+          "avg": 127.99999999999854,
+          "last": 128,
+          "last-5-avg": 128.0,
+          "last-10-avg": 128.0
+        },
+        "config/discount": {
+          "max": 0.95,
+          "min": 0.95,
+          "avg": 0.9500000000000255,
+          "last": 0.95,
+          "last-5-avg": 0.95,
+          "last-10-avg": 0.95
+        },
+        "config/init_temperature": {
+          "max": 0.1,
+          "min": 0.1,
+          "avg": 0.09999999999999648,
+          "last": 0.1,
+          "last-5-avg": 0.1,
+          "last-10-avg": 0.09999999999999999
+        },
+        "config/lr": {
+          "max": 0.0006,
+          "min": 0.0006,
+          "avg": 0.0005999999999999991,
+          "last": 0.0006,
+          "last-5-avg": 0.0006,
+          "last-10-avg": 0.0006
+        },
+        "config/actor_update_frequency": {
+          "max": 2,
+          "min": 2,
+          "avg": 1.9999999999999771,
+          "last": 2,
+          "last-5-avg": 2.0,
+          "last-10-avg": 2.0
+        },
+        "config/critic_tau": {
+          "max": 0.005,
+          "min": 0.005,
+          "avg": 0.0050000000000001415,
+          "last": 0.005,
+          "last-5-avg": 0.005,
+          "last-10-avg": 0.004999999999999999
+        },
+        "config/critic_target_update_frequency": {
+          "max": 2,
+          "min": 2,
+          "avg": 1.9999999999999771,
+          "last": 2,
+          "last-5-avg": 2.0,
+          "last-10-avg": 2.0
+        },
+        "config/batch_size": {
+          "max": 128,
+          "min": 128,
+          "avg": 127.99999999999854,
+          "last": 128,
+          "last-5-avg": 128.0,
+          "last-10-avg": 128.0
+        },
+        "config/num_eval_episodes": {
+          "max": 5,
+          "min": 5,
+          "avg": 5.000000000000003,
+          "last": 5,
+          "last-5-avg": 5.0,
+          "last-10-avg": 5.0
+        },
+        "config/gradient_steps": {
+          "max": 1,
+          "min": 1,
+          "avg": 0.9999999999999886,
+          "last": 1,
+          "last-5-avg": 1.0,
+          "last-10-avg": 1.0
+        },
+        "config/num_timesteps": {
+          "max": 20000,
+          "min": 20000,
+          "avg": 19999.999999999927,
+          "last": 20000,
+          "last-5-avg": 20000.0,
+          "last-10-avg": 20000.0
+        },
+        "config/num_seed_steps": {
+          "max": 1000,
+          "min": 1000,
+          "avg": 999.9999999999895,
+          "last": 1000,
+          "last-5-avg": 1000.0,
+          "last-10-avg": 1000.0
+        },
+        "config/update_after": {
+          "max": 1000,
+          "min": 1000,
+          "avg": 999.9999999999895,
+          "last": 1000,
+          "last-5-avg": 1000.0,
+          "last-10-avg": 1000.0
+        },
+        "config/eval_every": {
+          "max": 20,
+          "min": 20,
+          "avg": 20.00000000000001,
+          "last": 20,
+          "last-5-avg": 20.0,
+          "last-10-avg": 20.0
+        },
+        "config/save_every": {
+          "max": 5000,
+          "min": 5000,
+          "avg": 4999.999999999982,
+          "last": 5000,
+          "last-5-avg": 5000.0,
+          "last-10-avg": 5000.0
+        },
+        "config/num_samples": {
+          "max": 1,
+          "min": 1,
+          "avg": 0.9999999999999886,
+          "last": 1,
+          "last-5-avg": 1.0,
+          "last-10-avg": 1.0
+        },
+        "config/cpu": {
+          "max": 1,
+          "min": 1,
+          "avg": 0.9999999999999886,
+          "last": 1,
+          "last-5-avg": 1.0,
+          "last-10-avg": 1.0
+        },
+        "config/gpu": {
+          "max": 0,
+          "min": 0,
+          "avg": 0.0,
+          "last": 0,
+          "last-5-avg": 0.0,
+          "last-10-avg": 0.0
+        },
+        "eval_reward": {
+          "max": -0.4,
+          "min": -50.0,
+          "avg": -43.185096183296665,
+          "last": -1.0,
+          "last-5-avg": -5.0,
+          "last-10-avg": -3.9799999999999995
+        },
+        "eval_is_success": {
+          "max": 1.0,
+          "min": 0.0,
+          "avg": 0.15585364583477734,
+          "last": 1.0,
+          "last-5-avg": 0.9199999999999999,
+          "last-10-avg": 0.96
+        },
+        "critic_loss": {
+          "max": 6.267983913421631,
+          "min": 0.1014464795589447,
+          "avg": 1.3343802650622358,
+          "last": 0.8843207359313965,
+          "last-5-avg": 0.848925769329071,
+          "last-10-avg": 0.8187964141368866
+        },
+        "actor_loss": {
+          "max": 6.658425331115723,
+          "min": 0.5515106916427612,
+          "avg": 3.0531081193306204,
+          "last": 2.7381224632263184,
+          "last-5-avg": 2.5707605838775636,
+          "last-10-avg": 2.5709564208984377
+        },
+        "entropy": {
+          "max": 2.058234930038452,
+          "min": -4.053916931152344,
+          "avg": -2.7141199945819396,
+          "last": -3.3615317344665527,
+          "last-5-avg": -3.0842193126678468,
+          "last-10-avg": -2.9819883823394777
+        },
+        "alpha_loss": {
+          "max": 0.49871647357940674,
+          "min": -0.035090185701847076,
+          "avg": 0.018280400350658175,
+          "last": -0.014435186982154846,
+          "last-5-avg": -0.0033628949895501137,
+          "last-10-avg": 0.0007244319655001164
+        },
+        "alpha": {
+          "max": 0.09929127573101752,
+          "min": 0.03161137494320269,
+          "avg": 0.036858736946941084,
+          "last": 0.0399310773236553,
+          "last-5-avg": 0.039947582288899726,
+          "last-10-avg": 0.03998503529353338
+        },
+        "actor_Q": {
+          "max": -0.7521735429763794,
+          "min": -6.602190971374512,
+          "avg": -2.9608065504748566,
+          "last": -2.6039037704467773,
+          "last-5-avg": -2.447538948059082,
+          "last-10-avg": -2.451702666282654
+        }
+      },
+      "n_steps": [
+        5,
+        10
+      ],
+      "metric_n_steps": {
+        "train_reward": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b05869452942847000000000000000047000000000000000047c00000000000000047c00000000000000047c008000000000000652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005957c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a869452942847c00000000000000047000000000000000047bff000000000000047bff000000000000047bff000000000000047000000000000000047000000000000000047c00000000000000047c00000000000000047c008000000000000652e"
+          }
+        },
+        "train_is_success": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b058694529428473ff0000000000000473ff0000000000000473ff0000000000000473ff0000000000000473ff0000000000000652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005957c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a8694529428473ff0000000000000473ff0000000000000473ff0000000000000473ff0000000000000473ff0000000000000473ff0000000000000473ff0000000000000473ff0000000000000473ff0000000000000473ff0000000000000652e"
+          }
+        },
+        "timesteps_this_iter": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005952c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284b014b014b034b034b04652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059536000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284b034b014b024b024b024b014b014b034b034b04652e"
+          }
+        },
+        "time_this_iter_s": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b05869452942847402480c3a0000000474027420b80000000474030b922d000000047403013b4e800000047403360493c000000652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005957c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a8694529428474030c6be2c0000004740248d44f800000047402c1a8e8000000047402ba65e3800000047402f00dd3000000047402480c3a0000000474027420b80000000474030b922d000000047403013b4e800000047403360493c000000652e"
+          }
+        },
+        "done": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059527000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294288989898989652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005952c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a869452942889898989898989898989652e"
+          }
+        },
+        "timesteps_total": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059531000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284d69324d6a324d6d324d70324d7432652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059540000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284d61324d62324d64324d66324d68324d69324d6a324d6d324d70324d7432652e"
+          }
+        },
+        "training_iteration": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059531000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284d82084d83084d84084d85084d8608652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059540000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284d7d084d7e084d7f084d80084d81084d82084d83084d84084d85084d8608652e"
+          }
+        },
+        "timestamp": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005953b000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284ab959cb5f4ac559cb5f4ad659cb5f4ae659cb5f4af959cb5f652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059554000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284a7959cb5f4a8459cb5f4a9259cb5f4aa059cb5f4aaf59cb5f4ab959cb5f4ac559cb5f4ad659cb5f4ae659cb5f4af959cb5f652e"
+          }
+        },
+        "time_total_s": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284740ea2c2955a780004740ea2d9d765f80004740ea2fb49ab980004740ea31b7115680004740ea34231a7e0000652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005957c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284740ea242c587f80004740ea25752ccf00004740ea2736d5b700004740ea28f13b9a80004740ea2ae1496d80004740ea2c2955a780004740ea2d9d765f80004740ea2fb49ab980004740ea31b7115680004740ea34231a7e0000652e"
+          }
+        },
+        "pid": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059531000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284d974a4d974a4d974a4d974a4d974a652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059540000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284d974a4d974a4d974a4d974a4d974a4d974a4d974a4d974a4d974a4d974a652e"
+          }
+        },
+        "time_since_restore": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284740ea2c2955a780004740ea2d9d765f80004740ea2fb49ab980004740ea31b7115680004740ea34231a7e0000652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005957c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284740ea242c587f80004740ea25752ccf00004740ea2736d5b700004740ea28f13b9a80004740ea2ae1496d80004740ea2c2955a780004740ea2d9d765f80004740ea2fb49ab980004740ea31b7115680004740ea34231a7e0000652e"
+          }
+        },
+        "timesteps_since_restore": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059531000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284d69324d6a324d6d324d70324d7432652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059540000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284d61324d62324d64324d66324d68324d69324d6a324d6d324d70324d7432652e"
+          }
+        },
+        "iterations_since_restore": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059531000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284d82084d83084d84084d85084d8608652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059540000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284d7d084d7e084d7f084d80084d81084d82084d83084d84084d85084d8608652e"
+          }
+        },
+        "config/from_images": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059527000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294288989898989652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005952c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a869452942889898989898989898989652e"
+          }
+        },
+        "config/fix_goals": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059527000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294288989898989652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005952c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a869452942889898989898989898989652e"
+          }
+        },
+        "config/seed": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005952c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284b014b014b014b014b01652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059536000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284b014b014b014b014b014b014b014b014b014b01652e"
+          }
+        },
+        "config/num_resampled_goals": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005952c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284b014b014b014b014b01652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059536000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284b014b014b014b014b014b014b014b014b014b01652e"
+          }
+        },
+        "config/capacity": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005953b000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284a40420f004a40420f004a40420f004a40420f004a40420f00652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059554000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284a40420f004a40420f004a40420f004a40420f004a40420f004a40420f004a40420f004a40420f004a40420f004a40420f00652e"
+          }
+        },
+        "config/feature_dim": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005952c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284b804b804b804b804b80652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059536000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284b804b804b804b804b804b804b804b804b804b80652e"
+          }
+        },
+        "config/discount": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b058694529428473fee666666666666473fee666666666666473fee666666666666473fee666666666666473fee666666666666652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005957c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a8694529428473fee666666666666473fee666666666666473fee666666666666473fee666666666666473fee666666666666473fee666666666666473fee666666666666473fee666666666666473fee666666666666473fee666666666666652e"
+          }
+        },
+        "config/init_temperature": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b058694529428473fb999999999999a473fb999999999999a473fb999999999999a473fb999999999999a473fb999999999999a652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005957c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a8694529428473fb999999999999a473fb999999999999a473fb999999999999a473fb999999999999a473fb999999999999a473fb999999999999a473fb999999999999a473fb999999999999a473fb999999999999a473fb999999999999a652e"
+          }
+        },
+        "config/lr": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b058694529428473f43a92a30553261473f43a92a30553261473f43a92a30553261473f43a92a30553261473f43a92a30553261652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005957c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a8694529428473f43a92a30553261473f43a92a30553261473f43a92a30553261473f43a92a30553261473f43a92a30553261473f43a92a30553261473f43a92a30553261473f43a92a30553261473f43a92a30553261473f43a92a30553261652e"
+          }
+        },
+        "config/actor_update_frequency": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005952c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284b024b024b024b024b02652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059536000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284b024b024b024b024b024b024b024b024b024b02652e"
+          }
+        },
+        "config/critic_tau": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b058694529428473f747ae147ae147b473f747ae147ae147b473f747ae147ae147b473f747ae147ae147b473f747ae147ae147b652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005957c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a8694529428473f747ae147ae147b473f747ae147ae147b473f747ae147ae147b473f747ae147ae147b473f747ae147ae147b473f747ae147ae147b473f747ae147ae147b473f747ae147ae147b473f747ae147ae147b473f747ae147ae147b652e"
+          }
+        },
+        "config/critic_target_update_frequency": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005952c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284b024b024b024b024b02652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059536000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284b024b024b024b024b024b024b024b024b024b02652e"
+          }
+        },
+        "config/batch_size": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005952c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284b804b804b804b804b80652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059536000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284b804b804b804b804b804b804b804b804b804b80652e"
+          }
+        },
+        "config/num_eval_episodes": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005952c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284b054b054b054b054b05652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059536000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284b054b054b054b054b054b054b054b054b054b05652e"
+          }
+        },
+        "config/gradient_steps": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005952c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284b014b014b014b014b01652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059536000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284b014b014b014b014b014b014b014b014b014b01652e"
+          }
+        },
+        "config/num_timesteps": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059531000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284d204e4d204e4d204e4d204e4d204e652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059540000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284d204e4d204e4d204e4d204e4d204e4d204e4d204e4d204e4d204e4d204e652e"
+          }
+        },
+        "config/num_seed_steps": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059531000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284de8034de8034de8034de8034de803652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059540000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284de8034de8034de8034de8034de8034de8034de8034de8034de8034de803652e"
+          }
+        },
+        "config/update_after": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059531000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284de8034de8034de8034de8034de803652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059540000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284de8034de8034de8034de8034de8034de8034de8034de8034de8034de803652e"
+          }
+        },
+        "config/eval_every": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005952c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284b144b144b144b144b14652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059536000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284b144b144b144b144b144b144b144b144b144b14652e"
+          }
+        },
+        "config/save_every": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059531000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284d88134d88134d88134d88134d8813652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059540000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284d88134d88134d88134d88134d88134d88134d88134d88134d88134d8813652e"
+          }
+        },
+        "config/num_samples": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005952c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284b014b014b014b014b01652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059536000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284b014b014b014b014b014b014b014b014b014b01652e"
+          }
+        },
+        "config/cpu": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005952c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284b014b014b014b014b01652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059536000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284b014b014b014b014b014b014b014b014b014b01652e"
+          }
+        },
+        "config/gpu": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005952c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0586945294284b004b004b004b004b00652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "80059536000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284b004b004b004b004b004b004b004b004b004b00652e"
+          }
+        },
+        "eval_reward": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b05869452942847bff000000000000047bff666666666666747c02600000000000047c02533333333333347bff0000000000000652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005957c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a869452942847bff333333333333347bff999999999999947c00b33333333333347bfd999999999999a47c02066666666666747bff000000000000047bff666666666666747c02600000000000047c02533333333333347bff0000000000000652e"
+          }
+        },
+        "eval_is_success": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b058694529428473ff0000000000000473ff0000000000000473fe999999999999a473fe999999999999a473ff0000000000000652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005957c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a8694529428473ff0000000000000473ff0000000000000473ff0000000000000473ff0000000000000473ff0000000000000473ff0000000000000473ff0000000000000473fe999999999999a473fe999999999999a473ff0000000000000652e"
+          }
+        },
+        "critic_loss": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b058694529428473fe0885fa0000000473fef2e4fe0000000473fefd94c20000000473febf7a940000000473fec4c5b00000000652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005957c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a8694529428473fe3a05680000000473fea97cdc0000000473ff000c140000000473febaa43c0000000473fe44be300000000473fe0885fa0000000473fef2e4fe0000000473fefd94c20000000473febf7a940000000473fec4c5b00000000652e"
+          }
+        },
+        "actor_loss": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b058694529428474002a8f180000000474003d41de0000000474003b65f00000000474006b97b80000000474005e7acc0000000652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005957c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a86945294284740032b54c000000047400543e90000000047400539ea8000000047400509bb0000000047400425b620000000474002a8f180000000474003d41de0000000474003b65f00000000474006b97b80000000474005e7acc0000000652e"
+          }
+        },
+        "entropy": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b05869452942847c006a8c36000000047c009e93d0000000047c008aac68000000047c0073d364000000047c00ae46ac0000000652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005957c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a869452942847c006eedb8000000047c008c447c000000047c0077221c000000047c0058e3f4000000047c0067d332000000047c006a8c36000000047c009e93d0000000047c008aac68000000047c0073d364000000047c00ae46ac0000000652e"
+          }
+        },
+        "alpha_loss": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b058694529428473f7b722cc000000047bf838db72000000047bf6b49d300000000473f6f1e9b8000000047bf8d903200000000652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005957c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a8694529428473f75e2938000000047bf6f721e00000000473f66b82d00000000473f890aa860000000473f7ef08dc0000000473f7b722cc000000047bf838db72000000047bf6b49d300000000473f6f1e9b8000000047bf8d903200000000652e"
+          }
+        },
+        "alpha": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b058694529428473fa4769a5fcacd1f473fa47555f40234eb473fa473bed6fa4334473fa4728461ac9ad5473fa471d89e65f68f652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005957c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a8694529428473fa481b8bda7f4d3473fa480c1c845731b473fa47e802292e973473fa47bbf24006af6473fa4786982f2e657473fa4769a5fcacd1f473fa47555f40234eb473fa473bed6fa4334473fa4728461ac9ad5473fa471d89e65f68f652e"
+          }
+        },
+        "actor_Q": {
+          "5": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005954f000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b05869452942847c001c105a000000047c002cb00e000000047c002ba1c0000000047c005cbde8000000047c004d4cb80000000652e"
+          },
+          "10": {
+            "_type": "CLOUDPICKLE_FALLBACK",
+            "value": "8005957c000000000000008c0b636f6c6c656374696f6e73948c056465717565949394294b0a869452942847c00240228000000047c00445f7e000000047c004499d2000000047c0042ce64000000047c0033f74a000000047c001c105a000000047c002cb00e000000047c002ba1c0000000047c005cbde8000000047c004d4cb80000000652e"
+          }
+        }
+      },
+      "export_formats": [],
+      "status": "ERROR",
+      "start_time": 1607108695.655061,
+      "logdir": "/home/avandekl/Documents/gbrlfi/logs/after_e_stop/trainable_98b0d_00000_0_actor_update_frequency=2,batch_size=128,capacity=1000000,checkpoint=None,cpu=1,critic_target_update_freque_2020-12-04_14-04-55",
+      "runner": null,
+      "result_logger": null,
+      "last_debug": 1607162361.6310823,
+      "error_file": null,
+      "error_msg": null,
+      "trial_name_creator": null,
+      "custom_trial_name": null,
+      "custom_dirname": null,
+      "saving_to": null,
+      "remote_checkpoint_dir_prefix": null,
+      "checkpoint_freq": 0,
+      "checkpoint_at_end": false,
+      "keep_checkpoints_num": null,
+      "checkpoint_score_attr": "training_iteration",
+      "sync_on_checkpoint": true,
+      "checkpoint_manager": {
+        "_type": "CLOUDPICKLE_FALLBACK",
+        "value": "80059566010000000000008c1b7261792e74756e652e636865636b706f696e745f6d616e61676572948c11436865636b706f696e744d616e616765729493942981947d94288c146b6565705f636865636b706f696e74735f6e756d94477ff00000000000008c165f636865636b706f696e745f73636f72655f6465736394898c165f636865636b706f696e745f73636f72655f61747472948c12747261696e696e675f697465726174696f6e948c1c6e65776573745f70657273697374656e745f636865636b706f696e749468008c0a436865636b706f696e749493942981947d94288c0773746f72616765948c0a70657273697374656e74948c0576616c7565944e8c06726573756c74947d9475628c195f6e65776573745f6d656d6f72795f636865636b706f696e7494680b2981947d9428680e8c066d656d6f72799468104e68117d9475628c115f626573745f636865636b706f696e7473945d948c0b5f6d656d62657273686970948f9475622e"
+      },
+      "restore_path": null,
+      "restoring_from": null,
+      "num_failures": 0,
+      "results": "80054e2e",
+      "best_result": "80054e2e",
+      "param_config": "80054e2e",
+      "extra_arg": "80054e2e",
+      "_nonjson_fields": [
+        "loggers",
+        "sync_to_driver_fn",
+        "results",
+        "best_result",
+        "param_config",
+        "extra_arg"
+      ],
+      "resuming_from": null,
+      "__logger_started__": true
+    }
+  ],
+  "runner_data": {
+    "_metric": null,
+    "_total_time": 53665.09698390961,
+    "_iteration": 2184,
+    "_has_errored": true,
+    "_fail_fast": false,
+    "_verbose": true,
+    "_server_port": null,
+    "_cached_trial_decisions": {},
+    "_should_stop_experiment": false,
+    "_local_checkpoint_dir": "/home/avandekl/Documents/gbrlfi/logs/after_e_stop",
+    "_remote_checkpoint_dir": null,
+    "_stopper": {
+      "_type": "CLOUDPICKLE_FALLBACK",
+      "value": "80059527000000000000008c107261792e74756e652e73746f70706572948c0b4e6f6f7053746f707065729493942981942e"
+    },
+    "_resumed": false,
+    "_start_time": 1607108695.6342518,
+    "_last_checkpoint_time": 1607162371.4520066,
+    "_checkpoint_period": 10,
+    "_session_str": "2020-12-04_14-04-55",
+    "checkpoint_file": "/home/avandekl/Documents/gbrlfi/logs/after_e_stop/experiment_state-2020-12-04_14-04-55.json",
+    "launch_web_server": false
+  },
+  "stats": {
+    "start_time": 1607108695.6342518,
+    "timestamp": 1607162371.4520066
+  }
+}

@@ -158,8 +158,8 @@
   ],
   "runner_data": {
     "_metric": null,
-    "_total_time": 134823.74571561813,
-    "_iteration": 435,
+    "_total_time": 135583.72840976715,
+    "_iteration": 437,
     "_has_errored": false,
     "_fail_fast": false,
     "_verbose": true,
@@ -174,7 +174,7 @@
     },
     "_resumed": false,
     "_start_time": 1606277074.5908566,
-    "_last_checkpoint_time": 1606411899.2829683,
+    "_last_checkpoint_time": 1606412659.2586613,
     "_checkpoint_period": 10,
     "_session_str": "2020-11-24_23-04-34",
     "checkpoint_file": "/home/avandekl/Documents/gbrlfi/logs/deepcopy_conv_encoder_physical_robot/experiment_state-2020-11-24_23-04-34.json",
@@ -182,6 +182,6 @@
   },
   "stats": {
     "start_time": 1606277074.5908566,
-    "timestamp": 1606411899.2829683
+    "timestamp": 1606412659.2586613
   }
 }
